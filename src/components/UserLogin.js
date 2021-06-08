@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro'
 import Button from './Button'
+import PropTypes from 'prop-types'
 
-export default function LoginUser() {
-  // const newUserUrl =
-  //   'https://api.spacetraders.io/users/' +
-  //   document.getElementsByName('username').value +
-  //   '/claim'
+UserLogin.propTypes = {
+  token: PropTypes.string,
+}
 
+export default function UserLogin() {
   return (
     <>
       <Form>
@@ -17,7 +17,7 @@ export default function LoginUser() {
       </Form>
       <Error>
         <h2>Error</h2>
-        <p>The user name you have entered is already taken. Try again!</p>
+        Oops, that token was incorrect. Try again, or register as a new user.
       </Error>
     </>
   )
