@@ -5,7 +5,7 @@ describe('Servercheck', () => {
   it('renders', () => {
     render(<Servercheck />)
     expect(
-      screen.getByText('spacetraders is currently online and available to play')
+      screen.getByText('The Server is currently active')
     ).toBeInTheDocument()
   })
 })
