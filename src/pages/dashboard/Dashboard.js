@@ -13,6 +13,9 @@ export default function Dashboard() {
         <li>Loans: {users.user.loans}</li>
         <li>Ships: {users.user.ships}</li>
       </ul>
+      <form onSubmit={localStorage.removeItem('token')}>
+        <button>Log Out!</button>
+      </form>
     </>
   )
 }
