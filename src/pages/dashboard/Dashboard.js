@@ -9,7 +9,9 @@ export default function Dashboard() {
       <ul>
         <li>Username: {users.user.username}</li>
         <li>Token: {users.token}</li>
-        <li>Delete Account: {users.token}</li>
+        <li>Credits: {users.user.credits}</li>
+        <li>Loans: {users.user.loans}</li>
+        <li>Ships: {users.user.ships}</li>
       </ul>
     </>
   )
