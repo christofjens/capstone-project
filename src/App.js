@@ -19,7 +19,7 @@ function App() {
       <h1>Space Traders</h1>
       <BrowserRouter>
         <Switch>
-          <Route path="/dashboard">
+          <Route exact path="/">
             <Dashboard />
           </Route>
           <Route path="/systems">
