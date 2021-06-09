@@ -2,31 +2,29 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { BASE_URL } from '../../helper/url'
 
-Register.propTypes = {
+Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 }
 
-export default function Register({ setToken }) {
+export default function Login({ setToken }) {
   const [username, setUserName] = useState()
-  const [submitToken, setSubmitToken] = useState()
+  const [password, setPassword] = useState()
 
-  async function registerUser(credentials) {
+  async function loginUser(credentials) {
     return fetch(BASE_URL + '/users/' + username + '/claim', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials),
-    })
-      .then(data => data.json())
-      .then(err => console.log(err))
+    }).then(data => data.json())
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const token = await registerUser({
+    const token = await loginUser({
       username,
-      submitToken,
+      password,
     })
     setToken(token)
   }
@@ -41,13 +39,10 @@ export default function Register({ setToken }) {
         </label>
         <label>
           <p>Password</p>
-          <input type="text" onChange={e => setSubmitToken(e.target.value)} />
+          <input type="password" onChange={e => setPassword(e.target.value)} />
         </label>
         <div>
           <button type="submit">Submit</button>
-        </div>
-        <div>
-          <button type="submit"></button>
         </div>
       </form>
     </div>
