@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { BASE_URL } from '../../helper/url'
 
-Login.propTypes = {
+Register.propTypes = {
   setToken: PropTypes.func.isRequired,
 }
 
-export default function Login({ setToken }) {
+export default function Register({ setToken }) {
   const [username, setUserName] = useState()
-  const [password, setPassword] = useState()
+  const [submitToken, setSubmitToken] = useState()
 
-  async function loginUser(credentials) {
+  async function registerUser(credentials) {
     return fetch(BASE_URL + '/users/' + username + '/claim', {
       method: 'POST',
       headers: {
@@ -24,9 +24,9 @@ export default function Login({ setToken }) {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const token = await loginUser({
+    const token = await registerUser({
       username,
-      password,
+      submitToken,
     })
     setToken(token)
   }
@@ -41,7 +41,7 @@ export default function Login({ setToken }) {
         </label>
         <label>
           <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
+          <input type="text" onChange={e => setSubmitToken(e.target.value)} />
         </label>
         <div>
           <button type="submit">Submit</button>
