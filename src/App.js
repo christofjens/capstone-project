@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Dashboard from './pages/dashboard/Dashboard'
-import Register from './pages/register/Register'
+import Login from './pages/login/Login'
 import Systems from './pages/systems/Systems'
 import useToken from './helper/useToken'
 
@@ -11,7 +11,7 @@ function App() {
   const { token, setToken } = useToken()
 
   if (!token) {
-    return <Register setToken={setToken} />
+    return <Login setToken={setToken} />
   }
 
   return (

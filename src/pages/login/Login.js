@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { BASE_URL } from '../../helper/url'
 
-Register.propTypes = {
+Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 }
 
-export default function Register({ setToken }) {
+export default function Login({ setToken }) {
   const [username, setUserName] = useState()
 
-  async function registerUser(credentials) {
+  async function loginUser(credentials) {
     return fetch(BASE_URL + '/users/' + username + '/claim', {
       method: 'POST',
       headers: {
@@ -21,7 +21,7 @@ export default function Register({ setToken }) {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const token = await registerUser({
+    const token = await loginUser({
       username,
     })
     setToken(token)
