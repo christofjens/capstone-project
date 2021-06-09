@@ -13,7 +13,15 @@ export default function Dashboard() {
         <li>Loans: {users.user.loans}</li>
         <li>Ships: {users.user.ships}</li>
       </ul>
-      <button onClick={removeFromLocal('token')}>Log Out!</button>
+      <form>
+        <button
+          onClick={() => {
+            removeFromLocal('token')
+          }}
+        >
+          Log Out!
+        </button>
+      </form>
     </>
   )
 }
