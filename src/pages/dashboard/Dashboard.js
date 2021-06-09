@@ -1,5 +1,5 @@
 import React from 'react'
-import { loadFromLocal } from '../../helper/localStorage'
+import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
 
 export default function Dashboard() {
   const users = loadFromLocal('token')
@@ -13,9 +13,7 @@ export default function Dashboard() {
         <li>Loans: {users.user.loans}</li>
         <li>Ships: {users.user.ships}</li>
       </ul>
-      <form onSubmit={localStorage.removeItem('token')}>
-        <button>Log Out!</button>
-      </form>
+      <button onClick={removeFromLocal('token')}>Log Out!</button>
     </>
   )
 }
