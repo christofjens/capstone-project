@@ -13,7 +13,7 @@ export default function Login({ setToken }) {
   const [error, setError] = useState(null)
 
   async function loginUser(credentials) {
-    return fetch(BASE_URL + '/users/' + username + '/claim', {
+    return fetch(BASE_URL + '/users/' + credentials + '/claim', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export default function Login({ setToken }) {
     e.preventDefault()
     const token = await loginUser({
       username,
-    })
+    }) ?? 'error'
     setToken(token)
   }
 
