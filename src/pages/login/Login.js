@@ -10,6 +10,7 @@ Login.propTypes = {
 
 export default function Login({ setToken }) {
   const [username, setUserName] = useState()
+  const [error, setError] = useState(null)
 
   async function loginUser(credentials) {
     return fetch(BASE_URL + '/users/' + username + '/claim', {
@@ -18,7 +19,17 @@ export default function Login({ setToken }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(credentials),
-    }).then(data => data.json())
+    })
+      .then(data => {
+        if (!data.ok) {
+          throw Error(
+            'This username has already been claimed, try another one.'
+          )
+        } else {
+          return data.json()
+        }
+      })
+      .catch(err => setError(err.message))
   }
 
   const handleSubmit = async e => {
@@ -43,6 +54,7 @@ export default function Login({ setToken }) {
         <button disabled={!username} type="submit">
           Submit
         </button>
+        {error && <p>{error}</p>}
       </form>
     </LoginWrapper>
   )
