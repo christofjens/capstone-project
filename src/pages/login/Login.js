@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
+
 import { BASE_URL } from '../../helper/url'
 
 Login.propTypes = {
@@ -28,23 +30,25 @@ export default function Login({ setToken }) {
   }
 
   return (
-    <div className="login-wrapper">
+    <LoginWrapper>
       <h1>Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
           <input
             type="text"
             value={username}
             onChange={e => setUserName(e.target.value)}
           />
         </label>
-        <div>
-          <button disabled={!username} type="submit">
-            Submit
-          </button>
-        </div>
+        <button disabled={!username} type="submit">
+          Submit
+        </button>
       </form>
-    </div>
+    </LoginWrapper>
   )
 }
+
+const LoginWrapper = styled.section`
+  gap: 20px;
+  padding: 20px;
+`
