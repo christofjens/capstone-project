@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 
 import { BASE_URL } from '../../helper/url'
 
-Login.propTypes = {
+Register.propTypes = {
   setToken: PropTypes.func.isRequired,
 }
 
-export default function Login({ setToken }) {
+export default function Register({ setToken }) {
   const [username, setUserName] = useState()
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
 
-  async function loginUser(credentials) {
-    return fetch(BASE_URL + '/users/' + credentials + '/claim', {
+  async function registerUser(credentials) {
+    return fetch(BASE_URL + '/users/' + username + '/claim', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,15 +34,14 @@ export default function Login({ setToken }) {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const token = await loginUser({
-      username,
-    }) ?? 'error'
+    const token = (await registerUser()) ?? error
     setToken(token)
   }
 
   return (
     <LoginWrapper>
-      <h1>Please Log In</h1>
+      <h2>Register</h2>
+      <p>If you're new to the game, please enter a username:</p>
       <form onSubmit={handleSubmit}>
         <label>
           <input
