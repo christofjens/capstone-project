@@ -1,17 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
+import { BASE_URL } from '../../helper/url'
 
 export default function Dashboard() {
-  const users = loadFromLocal('token')
+  const { token } = loadFromLocal('token')
+  const [userData, setUserData] = useState({})
+
+  useEffect(() => {
+    fetch(BASE_URL + '/my/account', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(res => res.json())
+      .then(resBody => setUserData(resBody))
+      .catch(err => console.log(err))
+  })
+
+  /////////////////
+
+  console.log(token)
+  console.log(BASE_URL + '/my/account', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  console.log(userData)
+
+  /////////////////
+
   return (
     <>
       <h2>Dashboard</h2>
       <ul>
-        <li>Username: {users.user.username}</li>
-        <li>Token: {users.token}</li>
-        <li>Credits: {users.user.credits}</li>
-        <li>Loans: {users.user.loans}</li>
-        <li>Ships: {users.user.ships}</li>
+        <li>Username: {userData}</li>
+        <li>Token: </li>
+        <li>Credits: </li>
+        <li>Loans: </li>
+        <li>Ships: </li>
       </ul>
       <form>
         <button
