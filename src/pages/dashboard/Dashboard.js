@@ -4,7 +4,7 @@ import { BASE_URL } from '../../helper/url'
 
 export default function Dashboard() {
   const { token } = loadFromLocal('token')
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState([])
 
   useEffect(() => {
     fetch(BASE_URL + '/my/account', {
@@ -15,9 +15,9 @@ export default function Dashboard() {
       },
     })
       .then(res => res.json())
-      .then(resBody => setUserData(resBody))
+      .then(resBody => setUserData(resBody.user))
       .catch(err => console.log(err))
-  })
+  }, [])
 
   /////////////////
 
@@ -37,11 +37,11 @@ export default function Dashboard() {
     <>
       <h2>Dashboard</h2>
       <ul>
-        <li>Username: {userData}</li>
-        <li>Token: </li>
-        <li>Credits: </li>
-        <li>Loans: </li>
-        <li>Ships: </li>
+        <li>Username: {userData.username}</li>
+        <li>Token: {token}</li>
+        <li>Credits: {userData.credits}</li>
+        <li>Ships: {userData.shipCount}</li>
+        <li>Buildings: {userData.structureCount}</li>
       </ul>
       <form>
         <button
