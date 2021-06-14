@@ -19,20 +19,6 @@ export default function Dashboard() {
       .catch(err => console.log(err))
   }, [])
 
-  /////////////////
-
-  console.log(token)
-  console.log(BASE_URL + '/my/account', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  })
-  console.log(userData)
-
-  /////////////////
-
   return (
     <>
       <h2>Dashboard</h2>

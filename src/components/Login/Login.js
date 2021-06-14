@@ -4,13 +4,8 @@ import PropTypes from 'prop-types'
 
 import { BASE_URL } from '../../helper/url'
 
-// user sends token to API
-// API checks if token is correct
-// if wrong, renders error message
-// if right, stores token in localStorage
-
 Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setToken: PropTypes.func,
 }
 
 export default function Login({ setToken }) {
@@ -50,6 +45,7 @@ export default function Login({ setToken }) {
       <form onSubmit={handleSubmit}>
         <label>
           <input
+            aria-label="login"
             type="text"
             value={token}
             onChange={e => setExistingToken(e.target.value)}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { BASE_URL } from '../../helper/url'
 
 Register.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setToken: PropTypes.func,
 }
 
 export default function Register({ setToken }) {
