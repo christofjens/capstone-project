@@ -62,7 +62,7 @@ const UserDataWrapper = styled.ul`
   /* box-shadow: 0 0 20px #0a9cf5; */
   background-color: #fff;
   padding: 0 10px 10px 10px;
-  margin-top: 20px;
+  margin-top: 80px;
   list-style: none;
   li {
     margin-top: 10px;
