@@ -38,6 +38,8 @@ export default function Register({ setToken }) {
     setToken(token)
   }
 
+  console.log(error)
+
   return (
     <>
       <P>
@@ -55,7 +57,7 @@ export default function Register({ setToken }) {
         <Button disabled={!username} type="submit">
           Submit
         </Button>
-        {error && <Important>{error}</Important>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </form>
     </>
   )
@@ -88,4 +90,10 @@ const P = styled.p`
 const Important = styled.span`
   color: crimson;
   font-weight: bold;
+  margin-top: 10px;
+`
+const ErrorMessage = styled.div`
+  color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
 `

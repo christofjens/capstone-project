@@ -34,7 +34,7 @@ export default function Login({ setToken }) {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const token = await loginUser()
+    const token = (await loginUser()) ?? error
     setToken(token)
   }
 
@@ -56,7 +56,7 @@ export default function Login({ setToken }) {
         <Button disabled={!token} type="submit">
           Submit
         </Button>
-        {error && <Important>{error}</Important>}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
       </form>
     </>
   )
@@ -89,4 +89,9 @@ const P = styled.p`
 const Important = styled.span`
   color: crimson;
   font-weight: bold;
+`
+const ErrorMessage = styled.div`
+  color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
 `
