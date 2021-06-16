@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
 import { BASE_URL } from '../../helper/url'
+import Showloans from '../../components/showloans/Showloans'
 
 export default function Dashboard() {
   const { token } = loadFromLocal('token')
@@ -52,6 +53,7 @@ export default function Dashboard() {
           Log Out!
         </LogOutButton>
       </form>
+      <Showloans />
     </>
   )
 }
