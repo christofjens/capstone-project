@@ -3,7 +3,7 @@ import Button from './Button'
 
 describe('Button', () => {
   it('renders', () => {
-    render(<button />)
-    expect(screen.getByText('button')).toBeInTheDocument()
+    render(<Button>Button</Button>)
+    expect(screen.getByText('Button')).toBeInTheDocument()
   })
 })

@@ -39,27 +39,53 @@ export default function Register({ setToken }) {
   }
 
   return (
-    <LoginWrapper>
-      <h2>Register</h2>
-      <p>If you're new to the game, please enter a username:</p>
+    <>
+      <P>
+        <Important>To register a new account</Important>, please enter a
+        username:
+      </P>
       <form onSubmit={handleSubmit}>
         <label>
-          <input
+          <Input
             type="text"
             value={username}
             onChange={e => setUserName(e.target.value)}
           />
         </label>
-        <button disabled={!username} type="submit">
+        <Button disabled={!username} type="submit">
           Submit
-        </button>
-        {error && <p>{error}</p>}
+        </Button>
+        {error && <Important>{error}</Important>}
       </form>
-    </LoginWrapper>
+    </>
   )
 }
 
-const LoginWrapper = styled.section`
-  gap: 20px;
-  padding: 20px;
+const Input = styled.input`
+  margin-top: 20px;
+  background-color: #fff;
+  border: 2px solid #666;
+  border-radius: 7px 0 0 7px;
+  /* box-shadow: 0 0 20px #ff184c; */
+  padding: 10px;
+  color: #666;
+  min-width: 75%;
+`
+const Button = styled.button`
+  margin-top: 20px;
+  background-color: #fff;
+  border: 2px solid #666;
+  border-radius: 0 7px 7px 0;
+  /* box-shadow: 0 0 20px #ff184c; */
+  padding: 10px;
+  color: #666;
+  min-width: 80px;
+`
+const P = styled.p`
+  margin-top: 80px;
+`
+
+const Important = styled.span`
+  color: crimson;
+  font-weight: bold;
 `

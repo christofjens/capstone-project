@@ -31,7 +31,7 @@ export default function Login({ setToken }) {
       })
       .catch(err => setError(err.message))
   }
-  console.log(token)
+
   const handleSubmit = async e => {
     e.preventDefault()
     const token = await loginUser()
@@ -39,28 +39,54 @@ export default function Login({ setToken }) {
   }
 
   return (
-    <LoginWrapper>
-      <h2>Log In</h2>
-      <p>If you already have a token, please enter your token:</p>
+    <>
+      <P>
+        <Important>To log in to your account</Important>, please enter your
+        token:
+      </P>
       <form onSubmit={handleSubmit}>
         <label>
-          <input
+          <Input
             aria-label="login"
             type="text"
             value={token}
             onChange={e => setExistingToken(e.target.value)}
           />
         </label>
-        <button disabled={!token} type="submit">
+        <Button disabled={!token} type="submit">
           Submit
-        </button>
-        {error && <p>{error}</p>}
+        </Button>
+        {error && <Important>{error}</Important>}
       </form>
-    </LoginWrapper>
+    </>
   )
 }
 
-const LoginWrapper = styled.section`
-  gap: 20px;
-  padding: 20px;
+const Input = styled.input`
+  margin-top: 20px;
+  background-color: #fff;
+  border: 2px solid #666;
+  border-radius: 7px 0 0 7px;
+  /* box-shadow: 0 0 20px #ff184c; */
+  padding: 10px;
+  color: #666;
+  min-width: 75%;
+`
+const Button = styled.button`
+  margin-top: 20px;
+  background-color: #fff;
+  border: 2px solid #666;
+  border-radius: 0 7px 7px 0;
+  /* box-shadow: 0 0 20px #ff184c; */
+  padding: 10px;
+  color: #666;
+  min-width: 80px;
+`
+const P = styled.p`
+  margin-top: 80px;
+`
+
+const Important = styled.span`
+  color: crimson;
+  font-weight: bold;
 `

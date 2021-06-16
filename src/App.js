@@ -1,11 +1,10 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import styled from 'styled-components'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// import styled from 'styled-components/macro'
 
 import Dashboard from './pages/dashboard/Dashboard'
-import Systems from './pages/systems/Systems'
 import Splash from './pages/splash/Splash'
-import useToken from './helper/useToken'
+import useToken from './hooks/useToken'
 
 function App() {
   const { token, setToken } = useToken()
@@ -19,24 +18,17 @@ function App() {
   }
 
   return (
-    <Wrapper>
+    <>
       <h1>Space Traders</h1>
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route exact path="/">
             <Dashboard />
           </Route>
-          <Route path="/systems">
-            <Systems />
-          </Route>
         </Switch>
-      </BrowserRouter>
-    </Wrapper>
+      </Router>
+    </>
   )
 }
-
-const Wrapper = styled.section`
-  padding: 20px;
-`
 
 export default App
