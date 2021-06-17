@@ -1,24 +1,21 @@
-import { useState } from 'react'
-import styled from 'styled-components/macro'
+// import styled from 'styled-components/macro'
 
-export default function ShowLoans() {
-  const [currentBalance, setCurrentBalance] = useState()
-
+export default function Showloans({
+  amount,
+  collateralRequired,
+  rate,
+  termInDays,
+  type,
+}) {
   return (
-    <LoansWrapper>
-      <h2>ShowLoans</h2>
-      <h3>Current Balance:</h3>
-      <p>0 Credits</p>
-      <h3>Available Loans:</h3>
-      <p>Starter: 200.000 Credits</p>
-      <h3>Taken Loans:</h3>
-      <p>none</p>
-      <p>You don't have enough credits to repay your loan.</p>
-    </LoansWrapper>
+    <>
+      <p>{type}</p>
+      <p>{amount} Credits</p>
+      <p>Interest rate: {rate}%</p>
+      <p>
+        This loan hat to be paid back in {termInDays} days and requires{' '}
+        {collateralRequired === true ? 'collateral' : 'no collateral'}.
+      </p>
+    </>
   )
 }
-
-const LoansWrapper = styled.section`
-  padding: 20px;
-  gap: 20px;
-`
