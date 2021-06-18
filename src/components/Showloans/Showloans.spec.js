@@ -18,7 +18,7 @@ describe('Showloans', () => {
     expect(screen.getByText('Interest rate: 40%')).toBeInTheDocument()
     expect(
       screen.getByText(
-        'This loan has to be paid back in 2 days and requires no collateral.'
+        /.*loan.*2 days.*no collateral/i
       )
     ).toBeInTheDocument()
   })
