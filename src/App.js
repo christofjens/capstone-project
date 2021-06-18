@@ -26,9 +26,7 @@ function App() {
           <Route exact path="/">
             <Dashboard />
           </Route>
-          <Route exact path="/loans">
-            <Loans />
-          </Route>
+          <Route exact path="/loans" component={Loans} />
         </Switch>
       </Router>
     </>
