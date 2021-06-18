@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // import styled from 'styled-components/macro'
 
 import Dashboard from './pages/dashboard/Dashboard'
+import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import useToken from './hooks/useToken'
 
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/">
             <Dashboard />
           </Route>
+          <Route exact path="/loans" component={Loans} />
         </Switch>
       </Router>
     </>
