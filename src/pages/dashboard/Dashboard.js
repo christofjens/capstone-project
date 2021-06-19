@@ -18,7 +18,7 @@ export default function Dashboard() {
     }
     fetchUserData()
   }, ['https://api.spacetraders.io/my/account'])
-  console.log(userData)
+
   return (
     <>
       <h2>Dashboard</h2>
