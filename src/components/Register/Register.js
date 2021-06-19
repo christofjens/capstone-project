@@ -1,44 +1,32 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
-import { BASE_URL } from '../../helper/url'
+import axios from 'axios'
 
 Register.propTypes = {
   setToken: PropTypes.func,
 }
 
 export default function Register({ setToken }) {
-  const [username, setUserName] = useState()
   const [error, setError] = useState('')
+  const [username, setUsername] = useState()
 
-  async function registerUser(credentials) {
-    return fetch(BASE_URL + '/users/' + username + '/claim', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then(data => {
-        if (!data.ok) {
-          throw Error(
-            'This username has already been claimed, try another one.'
-          )
-        } else {
-          return data.json()
-        }
-      })
-      .catch(err => setError(err.message))
+  async function registerUser() {
+    try {
+      const response = await axios.post(
+        'https://api.spacetraders.io/users/' + username + '/claim'
+      )
+      const data = response.data
+      return data
+    } catch (error) {
+      setError(error.message)
+    }
   }
-
   const handleSubmit = async e => {
     e.preventDefault()
     const token = (await registerUser()) ?? error
     setToken(token)
   }
-
-  console.log(error)
 
   return (
     <>
@@ -51,7 +39,7 @@ export default function Register({ setToken }) {
           <Input
             type="text"
             value={username}
-            onChange={e => setUserName(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
         </label>
         <Button disabled={!username} type="submit">
