@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
-import { BASE_URL } from '../../helper/url'
+import axios from 'axios'
 
 Login.propTypes = {
   setToken: PropTypes.func,
@@ -13,25 +12,17 @@ export default function Login({ setToken }) {
   const [error, setError] = useState('')
 
   async function loginUser() {
-    return fetch(BASE_URL + '/my/account', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(data => {
-        if (!data.ok) {
-          throw Error('This token was wrong, try again.')
-        } else {
-          return {
-            token: `${token}`,
-          }
-        }
+    try {
+      await axios.get('https://api.spacetraders.io/my/account', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch(err => setError(err.message))
+      return { token: `${token}` }
+    } catch (error) {
+      setError(error.message)
+    }
   }
-
   const handleSubmit = async e => {
     e.preventDefault()
     const token = (await loginUser()) ?? error
