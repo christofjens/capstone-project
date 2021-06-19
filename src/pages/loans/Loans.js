@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { loadFromLocal } from '../../helper/localStorage'
-import { BASE_URL } from '../../helper/url'
+import axios from 'axios'
 import Showloans from '../../components/Showloans/Showloans'
 
 Loans.propTypes = {
@@ -14,17 +14,20 @@ export default function Loans() {
   const { token } = loadFromLocal('token')
 
   useEffect(() => {
-    fetch(BASE_URL + '/types/loans', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(resBody => setAvailableLoans(resBody.loans))
-      .catch(err => console.log(err))
-  }, [token])
+    const fetchLoans = async () => {
+      const result = await axios.get(
+        'https://api.spacetraders.io/types/loans',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      setAvailableLoans(result.data.loans)
+    }
+    fetchLoans()
+  }, ['https://api.spacetraders.io/types/loans'])
+  console.log(availableLoans)
 
   return (
     <>
