@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Servercheck from '../../components/Servercheck/Servercheck'
 import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
 
 export default function Dashboard() {
@@ -8,20 +9,20 @@ export default function Dashboard() {
   const [userData, setUserData] = useState([])
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    ;(async () => {
       const result = await axios.get('https://api.spacetraders.io/my/account', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       setUserData(result.data.user)
-    }
-    fetchUserData()
-  }, ['https://api.spacetraders.io/my/account'])
+    })()
+  }, [])
 
   return (
     <>
       <h2>Dashboard</h2>
+      <Servercheck />
       <UserDataWrapper>
         <li>
           <Highlight>Username:</Highlight> {userData.username}

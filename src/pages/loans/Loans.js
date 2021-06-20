@@ -14,7 +14,7 @@ export default function Loans() {
   const { token } = loadFromLocal('token')
 
   useEffect(() => {
-    const fetchLoans = async () => {
+    ;(async () => {
       const result = await axios.get(
         'https://api.spacetraders.io/types/loans',
         {
@@ -24,10 +24,8 @@ export default function Loans() {
         }
       )
       setAvailableLoans(result.data.loans)
-    }
-    fetchLoans()
-  }, ['https://api.spacetraders.io/types/loans'])
-  console.log(availableLoans)
+    })()
+  }, [])
 
   return (
     <>

@@ -6,12 +6,11 @@ export default function Servercheck() {
   const [serverStatus, setServerStatus] = useState([])
 
   useEffect(() => {
-    const fetchServerStatus = async () => {
+    ;(async () => {
       const result = await axios.get('https://api.spacetraders.io/game/status')
       setServerStatus(result.data.status)
-    }
-    fetchServerStatus()
-  }, ['https://api.spacetraders.io/game/status'])
+    })()
+  }, [])
 
   return (
     <>
