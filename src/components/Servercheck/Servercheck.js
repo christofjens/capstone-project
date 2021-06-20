@@ -1,15 +1,17 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { BASE_URL } from '../consts/url'
+// import { BASE_URL } from '../consts/url'
 
 export default function Servercheck() {
   const [serverStatus, setServerStatus] = useState([])
 
   useEffect(() => {
-    fetch(BASE_URL + '/game/status')
-      .then(res => res.json())
-      .then(resBody => setServerStatus(resBody.status))
-      .catch(err => console.error(err))
-  }, [])
+    const fetchServerStatus = async () => {
+      const result = await axios.get('https://api.spacetraders.io/game/status')
+      setServerStatus(result.data.status)
+    }
+    fetchServerStatus()
+  }, ['https://api.spacetraders.io/game/status'])
 
   return (
     <>

@@ -1,24 +1,23 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
-import { BASE_URL } from '../../helper/url'
 
 export default function Dashboard() {
   const { token } = loadFromLocal('token')
   const [userData, setUserData] = useState([])
 
   useEffect(() => {
-    fetch(BASE_URL + '/my/account', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(res => res.json())
-      .then(resBody => setUserData(resBody.user))
-      .catch(err => console.log(err))
-  }, [token])
+    const fetchUserData = async () => {
+      const result = await axios.get('https://api.spacetraders.io/my/account', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      setUserData(result.data.user)
+    }
+    fetchUserData()
+  }, ['https://api.spacetraders.io/my/account'])
 
   return (
     <>
