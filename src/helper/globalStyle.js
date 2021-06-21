@@ -23,6 +23,10 @@ h1, h2, h3{
     color: #333;
 }
 
+h3 {
+  margin-top: 40px;
+}
+
 input,
 button,
 textarea {
