@@ -1,22 +1,17 @@
-// import styled from 'styled-components/macro'
+import styled from 'styled-components/macro'
 import { useState, useEffect } from 'react'
 import { loadFromLocal } from '../../helper/localStorage'
 import axios from 'axios'
 import Showloans from '../../components/Showloans/Showloans'
 import Myloans from '../../components/Myloans/Myloans'
-import Takeoutloans from '../../components/Takeoutloans/Takeoutloans'
-import PropTypes from 'prop-types'
 
-Loans.propTypes ={
-  loantype: PropTypes.string,
-  takeOutLoan: PropTypes.func,
-  
-}
-
-export default function Loans({takeOutLoan}) {
+export default function Loans() {
+  const [error, setError] = useState('')
   const [availableLoans, setAvailableLoans] = useState([])
   const [takenLoans, setTakenLoans] = useState([])
   const { token } = loadFromLocal('token')
+
+  console.log(token)
 
   useEffect(() => {
     ;(async () => {
@@ -24,6 +19,7 @@ export default function Loans({takeOutLoan}) {
         'https://api.spacetraders.io/types/loans',
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         }
@@ -33,11 +29,28 @@ export default function Loans({takeOutLoan}) {
     ;(async () => {
       const result = await axios.get('https://api.spacetraders.io/my/loans', {
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       })
       setTakenLoans(result.data.loans)
     })()
+  }, [])
+
+  function handleTakeOutLoan(type) {
+    try {
+      axios({
+        method: 'post',
+        url: 'https://api.spacetraders.io/my/loans',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { type: `${type}` },
+      })
+    } catch (error) {
+      setError(error.message)
+    }
+  }
 
   return (
     <>
@@ -48,12 +61,16 @@ export default function Loans({takeOutLoan}) {
           <section>
             <Showloans
               amount={amount}
-              type={type}
+              key={type}
+              loantype={type}
               collateralRequired={collateralRequired}
               termInDays={termInDays}
               rate={rate}
             />
-            <Takeoutloans takeOutLoan={takeOutLoan} type={type} />
+            <button onClick={() => handleTakeOutLoan(type)}>
+              Take the {type} loan.
+            </button>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
           </section>
         )
       )}
@@ -72,3 +89,9 @@ export default function Loans({takeOutLoan}) {
     </>
   )
 }
+
+const ErrorMessage = styled.div`
+  color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
+`
