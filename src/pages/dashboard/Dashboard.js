@@ -22,7 +22,6 @@ export default function Dashboard() {
   return (
     <>
       <h2>Dashboard</h2>
-      <Servercheck />
       <UserDataWrapper>
         <li>
           <Highlight>Username:</Highlight> {userData.username}

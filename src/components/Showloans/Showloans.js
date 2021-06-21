@@ -18,15 +18,17 @@ export default function Showloans({
 }) {
   return (
     <>
-      <p>
-        <strong>{type}</strong>
-      </p>
-      <p>{amount} Credits</p>
-      <p>Interest rate: {rate}%</p>
-      <p>
-        This loan has to be paid back in {termInDays} days and requires
-        {collateralRequired === true ? ' collateral' : ' no collateral'}.
-      </p>
+      <ul>
+        <li>
+          <strong>{type}</strong>
+        </li>
+        <li>{amount} Credits</li>
+        <li>Interest rate: {rate}%</li>
+        <li>
+          This loan has to be paid back in {termInDays} days and requires
+          {collateralRequired === true ? ' collateral' : ' no collateral'}.
+        </li>
+      </ul>
     </>
   )
 }

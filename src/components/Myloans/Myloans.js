@@ -11,13 +11,15 @@ Showloans.propTypes = {
 export default function Showloans({ type, status, repaymentAmount, due }) {
   return (
     <section>
-      <p>
-        <strong>
-          {type}, {status}
-        </strong>
-      </p>
-      <p>{repaymentAmount} Credits</p>
-      <p>Due on {due}</p>
+      <ul>
+        <li>
+          <strong>
+            {type}, ({status} loan)
+          </strong>
+        </li>
+        <li>{repaymentAmount} Credits</li>
+        <li>Due on {due}</li>
+      </ul>
     </section>
   )
 }

@@ -61,6 +61,7 @@ export default function Loans() {
           <section>
             <Showloans
               amount={amount}
+              type={type}
               key={type}
               loantype={type}
               collateralRequired={collateralRequired}
