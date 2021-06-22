@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 export default function Ships() {
+  const [error, setError] = useState('')
   const [buyShips, setBuyShips] = useState([])
   const { token } = loadFromLocal('token')
 
@@ -21,6 +22,21 @@ export default function Ships() {
     })()
   }, [])
 
+  function handleBuyShip(type, location) {
+    try {
+      axios({
+        method: 'post',
+        url: 'https://api.spacetraders.io/my/ships',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { type: `${type}`, location: `${location}` },
+      })
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
   return (
     <div>
       <h2>Ships</h2>
@@ -36,18 +52,24 @@ export default function Ships() {
           purchaseLocations,
         }) => (
           <ShipList>
-            <ul key={type}>
-              <li>{manufacturer}</li>
+            <ul>
+              <li>
+                {manufacturer} {type}
+              </li>
               <li>Cargo: {maxCargo}</li>
               <li>Speed: {speed}</li>
               <li>Plating: {plating}</li>
               <li>Weapons: {weapons}</li>
-              {purchaseLocations.map(({ location, price, type }) => (
+              {purchaseLocations.map(({ location, price, system }) => (
                 <SubSection>
-                  <li>Location: {location}</li>
+                  <li>
+                    Location: {location}, {system} System
+                  </li>
                   <li>Price: {price}</li>
-                  <li>Type: {type}</li>
-                  <BuyButton>Buy this {type} ship</BuyButton>
+                  <BuyButton onClick={() => handleBuyShip(type, location)}>
+                    Buy a {type} ship
+                  </BuyButton>
+                  {error && <ErrorMessage>{error}</ErrorMessage>}
                 </SubSection>
               ))}
             </ul>
@@ -74,4 +96,10 @@ const BuyButton = styled.button`
   padding: 7px;
   margin-left: -20px;
   margin-top: 20px;
+`
+
+const ErrorMessage = styled.div`
+  color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
 `
