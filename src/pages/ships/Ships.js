@@ -6,6 +6,7 @@ import axios from 'axios'
 export default function Ships() {
   const [error, setError] = useState('')
   const [buyShips, setBuyShips] = useState([])
+  const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Ships() {
         },
         data: { type: `${type}`, location: `${location}` },
       })
+      setSuccess(`One ${type} ship added to your fleet!`)
     } catch (error) {
       setError(error.message)
     }
@@ -69,6 +71,7 @@ export default function Ships() {
                   <BuyButton onClick={() => handleBuyShip(type, location)}>
                     Buy a {type} ship
                   </BuyButton>
+                  {success && <SuccessMessage>{success}</SuccessMessage>}
                   {error && <ErrorMessage>{error}</ErrorMessage>}
                 </SubSection>
               ))}
@@ -100,6 +103,11 @@ const BuyButton = styled.button`
 
 const ErrorMessage = styled.div`
   color: crimson;
+  font-weight: bold;
+  margin-top: 15px;
+`
+const SuccessMessage = styled.div`
+  color: green;
   font-weight: bold;
   margin-top: 15px;
 `
