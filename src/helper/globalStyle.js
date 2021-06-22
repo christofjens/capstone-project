@@ -8,8 +8,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  font-family: 'Nova Mono', monospace;
-  font-size: 1rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.1rem;
   line-height: 1.5rem;
   height: 100vh;
   background-color: #fff;

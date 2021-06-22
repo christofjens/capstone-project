@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Servercheck from '../../components/Servercheck/Servercheck'
 import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
 
 export default function Dashboard() {

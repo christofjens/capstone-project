@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
+import Ships from './pages/ships/Ships'
 import useToken from './hooks/useToken'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route exact path="/loans" component={Loans} />
+          <Route exact path="/ships" component={Ships} />
         </Switch>
       </Router>
     </>
