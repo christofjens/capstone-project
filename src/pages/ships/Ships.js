@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { loadFromLocal } from '../../helper/localStorage'
 import styled from 'styled-components'
 import axios from 'axios'
+import Myships from './MyShips'
 
 export default function Ships() {
   const [error, setError] = useState('')
@@ -41,7 +42,7 @@ export default function Ships() {
 
   return (
     <div>
-      <h2>Ships</h2>
+      <Myships />
       <h3>Buy New Ships</h3>
       {buyShips.map(
         ({
@@ -56,7 +57,9 @@ export default function Ships() {
           <ShipList>
             <ul>
               <li>
-                {manufacturer} {type}
+                <strong>
+                  {manufacturer} {type}
+                </strong>
               </li>
               <li>Cargo: {maxCargo}</li>
               <li>Speed: {speed}</li>

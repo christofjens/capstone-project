@@ -76,6 +76,7 @@ export default function Myships() {
                 Speed: {speed} / Plating: {plating} / Weapons: {weapons}
               </li>
             </ul>
+            <ShipButton>Go to Ship</ShipButton>
           </MyShipsList>
         )
       )}
@@ -88,4 +89,12 @@ const MyShipsList = styled.ul`
   li {
     list-style: none;
   }
+`
+
+const ShipButton = styled.button`
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 7px;
+  padding: 7px;
+  margin-top: 20px;
 `
