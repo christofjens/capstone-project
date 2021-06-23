@@ -1,5 +1,5 @@
-import MyShips from './MyShips'
-import BuyShips from './BuyShips'
+import MyShips from './components/MyShips'
+import BuyShips from './components/BuyShips'
 
 export default function Ships() {
   return (
