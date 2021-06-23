@@ -5,6 +5,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import useToken from './hooks/useToken'
+import Systems from './pages/systems/Systems'
 
 function App() {
   const { token, setToken } = useToken()
@@ -22,10 +23,9 @@ function App() {
       <h1>Space Traders</h1>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
+          <Route exact path="/" component={Dashboard} />
           <Route exact path="/loans" component={Loans} />
+          <Route exact path="/systems" component={Systems} />
         </Switch>
       </Router>
     </>
