@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Work Sans', sans-serif;
   font-size: 1.1rem;
+  font-weight: 300;
   line-height: 1.5rem;
   height: 100vh;
   background-color: #fff;
@@ -18,6 +19,7 @@ body {
 }
 
 h1, h2, h3{
+  font-weight: 300;
     text-align: right;
     text-transform: uppercase;
     color: #333;

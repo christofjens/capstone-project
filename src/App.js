@@ -9,6 +9,11 @@ import useToken from './hooks/useToken'
 
 function App() {
   const { token, setToken } = useToken()
+  const routes = [
+    { path: '/', Component: Dashboard, exact: true },
+    { path: '/loans', Component: Loans },
+    { path: '/ships', Component: Ships },
+  ]
 
   if (!token) {
     return (
@@ -23,11 +28,13 @@ function App() {
       <h1>Space Traders</h1>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route exact path="/loans" component={Loans} />
-          <Route exact path="/ships" component={Ships} />
+          <>
+            {routes.map(({ Component, ...routeProps }) => (
+              <Route key={routeProps.path} {...routeProps}>
+                <Component />
+              </Route>
+            ))}
+          </>
         </Switch>
       </Router>
     </>

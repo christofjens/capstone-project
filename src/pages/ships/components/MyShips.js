@@ -62,9 +62,9 @@ export default function MyShips() {
           <MyShipsList>
             <ul>
               <li>
-                <strong key={id}>
+                <ImportantSpan key={id}>
                   {manufacturer} {type}
-                </strong>
+                </ImportantSpan>
               </li>
               <li>
                 Current Location: {location} (x: {x} | y: {y})
@@ -83,6 +83,10 @@ export default function MyShips() {
     </div>
   )
 }
+
+const ImportantSpan = styled.span`
+  font-weight: 500;
+`
 
 const MyShipsList = styled.ul`
   margin-top: 40px;

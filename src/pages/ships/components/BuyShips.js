@@ -73,9 +73,9 @@ export default function BuyShips() {
           <ShipList>
             <ul>
               <li>
-                <strong>
+                <ImportantSpan>
                   {manufacturer} {type}
-                </strong>
+                </ImportantSpan>
               </li>
               <li>Cargo: {maxCargo}</li>
               <li>Speed: {speed}</li>
@@ -101,6 +101,10 @@ export default function BuyShips() {
     </div>
   )
 }
+
+const ImportantSpan = styled.span`
+  font-weight: 500;
+`
 
 const ShipList = styled.ul`
   margin-top: 40px;
