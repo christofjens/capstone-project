@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../helper/localStorage'
+import { loadFromLocal } from '../../../helper/localStorage'
 import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
