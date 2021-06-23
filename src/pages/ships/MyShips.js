@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
-Myships.propTypes = {
+MyShips.propTypes = {
   cargo: PropTypes.array,
   flightPlanId: PropTypes.string,
   id: PropTypes.string,
@@ -18,10 +18,10 @@ Myships.propTypes = {
   weapons: PropTypes.number,
   x: PropTypes.number,
   y: PropTypes.number,
-  myShips: PropTypes.func,
+  setMyShips: PropTypes.func,
 }
 
-export default function Myships() {
+export default function MyShips() {
   const [myShips, setMyShips] = useState([])
   const { token } = loadFromLocal('token')
 
