@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../../helper/localStorage'
 import styled from 'styled-components'
-import axios from 'axios'
 import PropTypes from 'prop-types'
+import useFetch from '../../../hooks/useFetch'
 
 SystemsOverview.propTypes = {
   cargo: PropTypes.array,
@@ -19,59 +17,88 @@ SystemsOverview.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   setSystemsOverview: PropTypes.func,
+  allowsConstruction: PropTypes.bool,
+  dockedShips: PropTypes.number,
+  name: PropTypes.string,
+  symbol: PropTypes.string,
 }
 
 export default function SystemsOverview() {
-  const [systemsOverview, setSystemsOverview] = useState([])
-  const { token } = loadFromLocal('token')
+  const { data: systemsOverview } = useFetch(
+    'https://api.spacetraders.io/systems/OE/locations'
+  )
+  const { data: marketplaceDetail } = useFetch(
+    'https://api.spacetraders.io/locations/OE-PM/marketplace'
+  )
 
-  useEffect(() => {
-    ;(async () => {
-      const result = await axios({
-        method: 'get',
-        url: 'https://api.spacetraders.io/systems/OE/locations',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setSystemsOverview(result.data.locations)
-    })()
-  }, [])
+  console.log(systemsOverview)
 
   return (
-    <div>
-      <h2>Ships</h2>
-      <h3>System</h3>
-      {systemsOverview.map(
-        ({ symbol, allowsConstruction, name, type, x, y }) => (
-          <SystemsOverviewList>
-            <ul>
-              <li>
-                <strong key={symbol}>
+    <section>
+      <h3>Overview</h3>
+      <SystemsOverviewList>
+        {systemsOverview.map(
+          ({ symbol, allowsConstruction, name, type, x, y }) => (
+            <div>
+              <ul>
+                <li key={symbol}>
                   {name} / {symbol}
-                </strong>
+                </li>
+                <li>
+                  {type}, Grid x: {x}/y: {y}
+                </li>
+                <li>
+                  {allowsConstruction === true
+                    ? 'Construction of buildings is allowed'
+                    : 'Construction of buildings is not allowed'}
+                </li>
+              </ul>
+              <LocationDetailButton onClick="">
+                Get {type} {name}'s details
+              </LocationDetailButton>
+            </div>
+          )
+        )}
+      </SystemsOverviewList>
+      <h3>Marketplace of {systemsOverview.name}</h3>
+      <MarketplaceList>
+        {marketplaceDetail.map(
+          ({
+            volumePerUnit,
+            symbol,
+            sellPricePerUnit,
+            quantityAvailable,
+            purchasePricePerUnit,
+          }) => (
+            <ul>
+              <li>{symbol}</li>
+              <li>
+                Buying price {purchasePricePerUnit} Credits per {volumePerUnit}{' '}
+                unit
               </li>
               <li>
-                {type}, Grid x: {x}/y: {y}
+                Selling price {sellPricePerUnit} Credits per {volumePerUnit}{' '}
+                unit
               </li>
               <li>
-                {allowsConstruction === true
-                  ? 'Construction of buildings is allowed'
-                  : 'Construction of buildings is not allowed'}
+                {quantityAvailable} units of {symbol} are currently available.
               </li>
             </ul>
-            <LocationDetailButton>
-              Get {type} {name}'s details
-            </LocationDetailButton>
-          </SystemsOverviewList>
-        )
-      )}
-    </div>
+          )
+        )}
+      </MarketplaceList>
+    </section>
   )
 }
 
 const SystemsOverviewList = styled.ul`
+  margin-top: 40px;
+  li {
+    list-style: none;
+  }
+`
+
+const MarketplaceList = styled.ul`
   margin-top: 40px;
   li {
     list-style: none;
