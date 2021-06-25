@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
+import backgroundImage0 from '../assets/images/backgroundImage0.jpg'
+import backgroundImage from '../assets/images/backgroundImage1.png'
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -8,21 +10,26 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Titillium Web', monospace;
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 200;
+  color: #eee;
   line-height: 1.5rem;
   height: 100vh;
-  background-color: #fff;
-  color: #666;
-  padding: 20px;
+  background-color: darkslategray;
+  background-image: url(${backgroundImage}), url(${backgroundImage0});
+  background-repeat: repeat, no-repeat;
+  background-size: auto, cover;
+  background-attachment: fixed, fixed;
+  background-position: center, center;
+  padding: 10px;
 }
 
 h1, h2, h3{
   font-weight: 300;
     text-align: right;
     text-transform: uppercase;
-    color: #333;
+    color: #eee;
 }
 
 h3 {
@@ -30,7 +37,6 @@ h3 {
 }
 
 input,
-button,
 textarea {
   font-size: inherit;
   font-family: inherit;
