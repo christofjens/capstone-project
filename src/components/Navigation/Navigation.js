@@ -29,7 +29,7 @@ const NavigationContainer = styled.nav`
   max-width: 600px;
   height: 60px;
   margin: 0 auto;
-  background: rgba(0, 70, 80, 0.8);
+  background: rgba(30, 30, 30, 1);
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   display: flex;
@@ -48,6 +48,6 @@ const NavButton = styled(NavLink)`
   color: rgba(255, 255, 255, 0.7);
 
   &.active {
-    color: rgba(255, 120, 100, 0.8);
+    color: rgba(255, 120, 0, 0.9);
   }
 `

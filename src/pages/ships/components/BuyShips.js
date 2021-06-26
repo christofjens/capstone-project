@@ -94,14 +94,12 @@ export default function BuyShips() {
             {purchaseLocations.map(({ location, price, system }) => (
               <SubSection>
                 <ul>
-                  <li>Available at</li>
-                  <li>
-                    {location} for {price} Credits
-                  </li>
+                  <li>Available at {location} </li>
+                  <li>for {price} Credits</li>
                 </ul>
                 <div>
                   <BuyButton onClick={() => handleBuyShip(type, location)}>
-                    +
+                    BUY
                   </BuyButton>
                 </div>
                 {success && <SuccessMessage>{success}</SuccessMessage>}
@@ -116,7 +114,7 @@ export default function BuyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 200;
+  font-weight: 400;
   color: rgba(255, 120, 0, 0.9);
 `
 
@@ -132,10 +130,8 @@ const ShipListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px 20px 0 20px;
+  border: 0;
 `
 
 const Image = styled.div`
@@ -149,16 +145,16 @@ const SubSection = styled.ul`
   align-items: center;
   padding: 0 20px 20px 20px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.05);
 `
 const BuyButton = styled.button`
   border: none;
-  padding: 15px;
-  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
   font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
   font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.1);
+  background: transparent;
   color: #eee;
 `
 

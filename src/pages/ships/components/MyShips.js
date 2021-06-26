@@ -86,6 +86,7 @@ export default function MyShips() {
               </MyShipsListContainer>
               <ShipNavigation>
                 <ShipNavigationButton>TRAVEL</ShipNavigationButton>
+                {'/'}
                 <ShipNavigationButton>TRADE</ShipNavigationButton>
               </ShipNavigation>
             </MyShipsList>
@@ -97,7 +98,7 @@ export default function MyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 200;
+  font-weight: 400;
   color: rgba(255, 120, 0, 0.9);
 `
 
@@ -115,8 +116,6 @@ const MyShipsListContainer = styled.div`
   justify-content: space-between;
   padding: 20px;
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.05);
 `
 
 const Image = styled.div`
@@ -128,16 +127,18 @@ const ShipNavigation = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 `
 
 const ShipNavigationButton = styled.button`
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 20px;
-  width: 50%;
+  width: 45%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: transparent;
   color: #eee;
 `

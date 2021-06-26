@@ -23,11 +23,13 @@ export default function Dashboard() {
       <h2>Dashboard</h2>
       <UserDataWrapper>
         <li>
-          <Highlight>Username:</Highlight> {userData.username}
+          <Highlight>Hello, {userData.username}!</Highlight>
         </li>
         <li>
-          <Highlight>Token:</Highlight> <Important>{token}</Important>
-          <br />
+          <Highlight>Token:</Highlight>
+          {token}
+        </li>
+        <li>
           Your token has been saved in the app. To be completely sure you can
           log in to your game later, save it in a text file.
         </li>
@@ -47,7 +49,7 @@ export default function Dashboard() {
             removeFromLocal('token')
           }}
         >
-          Log Out!
+          LOG OUT
         </LogOutButton>
       </form>
     </>
@@ -55,31 +57,33 @@ export default function Dashboard() {
 }
 
 const UserDataWrapper = styled.ul`
-  border: 2px solid #666;
-  border-radius: 7px;
-  /* box-shadow: 0 0 20px #0a9cf5; */
-  background-color: #fff;
-  padding: 0 10px 10px 10px;
-  margin-top: 80px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  padding: 20px;
+  margin-top: 40px;
+  border: none;
   list-style: none;
   li {
     margin-top: 10px;
   }
 `
 const LogOutButton = styled.button`
-  margin-top: 20px;
-  background-color: #fff;
-  border: 2px solid #ff184c;
-  border-radius: 7px;
-  /* box-shadow: 0 0 20px #ff184c; */
-  padding: 10px;
-  color: #ff184c;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 15px;
   width: 100%;
+  font-family: 'Titillium Web', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #eee;
+  background-color: transparent;
 `
 const Highlight = styled.span`
-  color: darkgreen;
+  font-weight: 400;
 `
 const Important = styled.span`
-  color: crimson;
-  font-weight: bold;
+  color: rgba(255, 120, 0, 0.9);
+  font-weight: 400;
 `
