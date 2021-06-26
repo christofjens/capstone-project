@@ -57,11 +57,7 @@ export default function Dashboard() {
 }
 
 const UserDataWrapper = styled.ul`
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; */
-  padding: 20px;
-  margin-top: 40px;
+  padding: 30px 20px 20px 20px;
   border: none;
   list-style: none;
   li {

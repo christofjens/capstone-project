@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import Ships from './pages/ships/Ships'
+import Systems from './pages/systems/Systems'
 import useToken from './hooks/useToken'
 import Navigation from './components/Navigation/Navigation'
 
@@ -35,6 +36,9 @@ export default function App() {
               </Route>
               <Route exact path="/ships">
                 <Ships />
+              </Route>
+              <Route exact path="/systems">
+                <Systems />
               </Route>
             </>
           </Switch>

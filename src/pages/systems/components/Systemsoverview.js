@@ -1,6 +1,8 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import useFetch from '../../../hooks/useFetch'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { loadFromLocal } from '../../../helper/localStorage'
 
 SystemsOverview.propTypes = {
   cargo: PropTypes.array,
@@ -24,22 +26,31 @@ SystemsOverview.propTypes = {
 }
 
 export default function SystemsOverview() {
-  const { data: systemsOverview } = useFetch(
-    'https://api.spacetraders.io/systems/OE/locations'
-  )
-  const { data: marketplaceDetail } = useFetch(
-    'https://api.spacetraders.io/locations/OE-PM/marketplace'
-  )
+  const [systemsOverview, setSystemsOverview] = useState([])
+  const { token } = loadFromLocal('token')
+
+  useEffect(() => {
+    ;(async () => {
+      const result = await axios({
+        method: 'get',
+        url: 'https://api.spacetraders.io/systems/OE/locations',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      setSystemsOverview(result.data.locations)
+    })()
+  }, [])
 
   console.log(systemsOverview)
 
   return (
-    <section>
-      <h3>Overview</h3>
-      <SystemsOverviewList>
-        {systemsOverview.map(
-          ({ symbol, allowsConstruction, name, type, x, y }) => (
-            <div>
+    <SystemsOverviewList>
+      {systemsOverview.map(
+        ({ symbol, allowsConstruction, name, type, x, y }) => (
+          <div>
+            <SystemsOverviewContainer>
               <ul>
                 <li key={symbol}>
                   {name} / {symbol}
@@ -53,62 +64,52 @@ export default function SystemsOverview() {
                     : 'Construction of buildings is not allowed'}
                 </li>
               </ul>
+            </SystemsOverviewContainer>
+            <LocationDetailButtonContainer>
               <LocationDetailButton onClick="">
-                Get {type} {name}'s details
+                GET {type} DETAILS
               </LocationDetailButton>
-            </div>
-          )
-        )}
-      </SystemsOverviewList>
-      <h3>Marketplace of {systemsOverview.name}</h3>
-      <MarketplaceList>
-        {marketplaceDetail.map(
-          ({
-            volumePerUnit,
-            symbol,
-            sellPricePerUnit,
-            quantityAvailable,
-            purchasePricePerUnit,
-          }) => (
-            <ul>
-              <li>{symbol}</li>
-              <li>
-                Buying price {purchasePricePerUnit} Credits per {volumePerUnit}{' '}
-                unit
-              </li>
-              <li>
-                Selling price {sellPricePerUnit} Credits per {volumePerUnit}{' '}
-                unit
-              </li>
-              <li>
-                {quantityAvailable} units of {symbol} are currently available.
-              </li>
-            </ul>
-          )
-        )}
-      </MarketplaceList>
-    </section>
+            </LocationDetailButtonContainer>
+          </div>
+        )
+      )}
+    </SystemsOverviewList>
   )
 }
 
 const SystemsOverviewList = styled.ul`
-  margin-top: 40px;
+  margin-top: 20px;
+  border: none;
   li {
     list-style: none;
   }
 `
 
-const MarketplaceList = styled.ul`
-  margin-top: 40px;
-  li {
-    list-style: none;
-  }
+const SystemsOverviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  border: none;
+`
+
+const LocationDetailButtonContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
 `
 
 const LocationDetailButton = styled.button`
+  border: none;
+  padding: 10px 20px;
   width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 7px;
-  padding: 7px;
-  margin-top: 20px;
+  font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
+  font-weight: 400;
+  background-color: transparent;
+  color: #eee;
 `
