@@ -15,7 +15,6 @@ body {
   height: 100vh;
   background-color: #fff;
   color: #666;
-  padding: 20px;
 }
 
 h1, h2, h3{
