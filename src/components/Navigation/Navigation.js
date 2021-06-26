@@ -3,20 +3,21 @@ import { ReactComponent as HomeIcon } from '../../assets/icons/home-outline.svg'
 import { ReactComponent as RocketIcon } from '../../assets/icons/rocket-outline.svg'
 import { ReactComponent as PlanetIcon } from '../../assets/icons/planet-outline.svg'
 import { ReactComponent as CashIcon } from '../../assets/icons/cash-outline.svg'
+import { NavLink } from 'react-router-dom'
 
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <NavButton>
+      <NavButton exact to="/" activeClassName="active">
         <HomeIcon />
       </NavButton>
-      <NavButton>
+      <NavButton exact to="/ships" activeClassName="active">
         <RocketIcon />
       </NavButton>
-      <NavButton>
+      <NavButton exact to="/systems" activeClassName="active">
         <PlanetIcon />
       </NavButton>
-      <NavButton>
+      <NavButton exact to="/loans" activeClassName="active">
         <CashIcon />
       </NavButton>
     </NavigationContainer>
@@ -34,7 +35,7 @@ const NavigationContainer = styled.nav`
   align-items: center;
 `
 
-const NavButton = styled.button`
+const NavButton = styled(NavLink)`
   border: none;
   padding: auto 20px;
   width: 24px;
@@ -44,4 +45,8 @@ const NavButton = styled.button`
   font-weight: 400;
   background: #000;
   color: #eee;
+
+  &.active {
+    color: orange;
+  }
 `
