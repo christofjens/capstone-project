@@ -38,13 +38,14 @@ const InnerNavigation = styled.div`
 `
 
 const InnerNavigationButton = styled.button`
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 20px 20px 0 0;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 20px;
-  width: 45%;
+  width: 50%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
-  font-weight: 600;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0.05);
   color: #eee;
 `

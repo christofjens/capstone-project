@@ -84,11 +84,11 @@ export default function MyShips() {
                   />
                 </Image>
               </MyShipsListContainer>
+              <ShipNavigation>
+                <ShipNavigationButton>TRAVEL</ShipNavigationButton>
+                <ShipNavigationButton>TRADE</ShipNavigationButton>
+              </ShipNavigation>
             </MyShipsList>
-            <ShipNavigation>
-              <ShipNavigationButton>TRAVEL</ShipNavigationButton>
-              <ShipNavigationButton>TRADE</ShipNavigationButton>
-            </ShipNavigation>
           </div>
         )
       )}
@@ -102,10 +102,8 @@ const ImportantSpan = styled.span`
 `
 
 const MyShipsList = styled.ul`
-  padding: 20px 0 0 20px;
   margin-top: 20px;
-  border-left: 1px dashed rgba(255, 255, 255, 0.2);
-  border-right: 1px dashed rgba(255, 255, 255, 0.2);
+  border: none;
   li {
     list-style: none;
   }
@@ -115,7 +113,10 @@ const MyShipsListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding: 20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
 `
 
 const Image = styled.div`
@@ -130,13 +131,13 @@ const ShipNavigation = styled.div`
 `
 
 const ShipNavigationButton = styled.button`
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0 0 20px 20px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 20px;
-  width: 45%;
+  width: 50%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
   color: #eee;
 `

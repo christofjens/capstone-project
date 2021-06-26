@@ -73,10 +73,9 @@ export default function BuyShips() {
             <ShipListContainer>
               <ul>
                 <li>
-                  <ImportantSpan key={type}>{manufacturer}</ImportantSpan>
-                </li>
-                <li>
-                  <ImportantSpan>{type}</ImportantSpan>
+                  <ImportantSpan key={type}>
+                    {manufacturer} {type}
+                  </ImportantSpan>
                 </li>
                 <li>Cargo: {maxCargo}</li>
                 <li>Speed: {speed}</li>
@@ -124,11 +123,9 @@ const ImportantSpan = styled.span`
 `
 
 const ShipList = styled.ul`
-  padding: 20px 0 0 20px;
+  padding: 20px 0 0 0;
   margin-top: 20px;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  border-top: none;
-  border-radius: 0 0 20px 20px;
+  border: none;
   li {
     list-style: none;
   }
@@ -138,6 +135,10 @@ const ShipListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
 `
 
 const Image = styled.div`
@@ -149,12 +150,13 @@ const SubSection = styled.ul`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0 0 0;
-  padding: 0 20px 20px 0;
+  padding: 0 20px 20px 20px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
 `
 const BuyButton = styled.button`
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0 0 10px 0;
+  border: none;
   padding: 15px;
   width: 100%;
   font-size: 1rem;
