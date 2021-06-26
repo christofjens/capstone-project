@@ -50,7 +50,7 @@ const AppContainer = styled.section`
   align-items: end;
   height: 100vh;
   max-width: 600px;
-  margin: 0;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: auto 48px;
 `
@@ -58,4 +58,5 @@ const AppContainer = styled.section`
 const ContentContainer = styled.section`
   align-self: start;
   padding: 20px 20px 0 20px;
+  overflow-y: scroll;
 `
