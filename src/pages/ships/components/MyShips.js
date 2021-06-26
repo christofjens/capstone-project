@@ -120,8 +120,8 @@ const MyShipsListContainer = styled.div`
 `
 
 const Image = styled.div`
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 `
 
 const ShipNavigation = styled.div`

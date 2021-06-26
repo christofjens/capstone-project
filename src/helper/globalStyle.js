@@ -22,7 +22,6 @@ body {
   background-size: auto, cover;
   background-attachment: fixed, fixed;
   background-position: center, center;
-  padding: 10px;
 }
 
 h1, h2, h3{

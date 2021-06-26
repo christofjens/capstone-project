@@ -22,10 +22,12 @@ BuyShips.propTypes = {
 }
 
 export default function BuyShips() {
-  const [error, setError] = useState('')
   const [buyShips, setBuyShips] = useState([])
+  const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
+
+  console.log(buyShips)
 
   useEffect(() => {
     ;(async () => {
@@ -98,11 +100,7 @@ export default function BuyShips() {
                   </li>
                 </ul>
                 <div>
-                  <BuyButton
-                    onClick={() =>
-                      handleBuyShip(type, purchaseLocations.location)
-                    }
-                  >
+                  <BuyButton onClick={() => handleBuyShip(type, location)}>
                     +
                   </BuyButton>
                 </div>
@@ -122,9 +120,8 @@ const ImportantSpan = styled.span`
   color: rgba(255, 120, 0, 0.9);
 `
 
-const ShipList = styled.ul`
+const ShipList = styled.div`
   padding: 20px 0 0 0;
-  margin-top: 20px;
   border: none;
   li {
     list-style: none;
