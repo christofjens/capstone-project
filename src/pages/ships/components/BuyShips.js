@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadFromLocal } from '../../../helper/localStorage'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
@@ -22,10 +22,12 @@ BuyShips.propTypes = {
 }
 
 export default function BuyShips() {
-  const [error, setError] = useState('')
   const [buyShips, setBuyShips] = useState([])
+  const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
+
+  console.log(buyShips)
 
   useEffect(() => {
     ;(async () => {
@@ -51,7 +53,7 @@ export default function BuyShips() {
         },
         data: { type: `${type}`, location: `${location}` },
       })
-      setSuccess(`One ${type} ship added to your fleet!`)
+      setSuccess(`${type} ship added to your fleet!`)
     } catch (error) {
       setError(error.message)
     }
@@ -59,7 +61,6 @@ export default function BuyShips() {
 
   return (
     <div>
-      <h3>Buy New Ships</h3>
       {buyShips.map(
         ({
           manufacturer,
@@ -71,30 +72,40 @@ export default function BuyShips() {
           purchaseLocations,
         }) => (
           <ShipList>
-            <ul>
-              <li>
-                <ImportantSpan>
-                  {manufacturer} {type}
-                </ImportantSpan>
-              </li>
-              <li>Cargo: {maxCargo}</li>
-              <li>Speed: {speed}</li>
-              <li>Plating: {plating}</li>
-              <li>Weapons: {weapons}</li>
-              {purchaseLocations.map(({ location, price, system }) => (
-                <SubSection>
-                  <li>
-                    Location: {location}, {system} System
-                  </li>
-                  <li>Price: {price}</li>
+            <ShipListContainer>
+              <ul>
+                <li>
+                  <ImportantSpan key={type}>
+                    {manufacturer} {type}
+                  </ImportantSpan>
+                </li>
+                <li>Cargo: {maxCargo}</li>
+                <li>Speed: {speed}</li>
+                <li>Plating: {plating}</li>
+                <li>Weapons: {weapons}</li>
+              </ul>
+              <Image>
+                <img
+                  src={process.env.PUBLIC_URL + `/shipId_${type}.png`}
+                  alt=""
+                />
+              </Image>
+            </ShipListContainer>
+            {purchaseLocations.map(({ location, price, system }) => (
+              <SubSection>
+                <ul>
+                  <li>Available at {location} </li>
+                  <li>for {price} Credits</li>
+                </ul>
+                <div>
                   <BuyButton onClick={() => handleBuyShip(type, location)}>
-                    Buy a {type} ship
+                    BUY
                   </BuyButton>
-                  {success && <SuccessMessage>{success}</SuccessMessage>}
-                  {error && <ErrorMessage>{error}</ErrorMessage>}
-                </SubSection>
-              ))}
-            </ul>
+                </div>
+                {success && <SuccessMessage>{success}</SuccessMessage>}
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+              </SubSection>
+            ))}
           </ShipList>
         )
       )}
@@ -103,25 +114,48 @@ export default function BuyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 500;
+  font-weight: 400;
+  color: rgba(255, 120, 0, 0.9);
 `
 
-const ShipList = styled.ul`
-  margin-top: 40px;
+const ShipList = styled.div`
+  padding: 20px 0 0 0;
+  border: none;
   li {
     list-style: none;
   }
 `
+
+const ShipListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+  border: 0;
+`
+
+const Image = styled.div`
+  height: 150px;
+  width: 150px;
+`
 const SubSection = styled.ul`
-  margin: 20px 0 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 20px 20px;
+  border: none;
 `
 const BuyButton = styled.button`
-  width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 7px;
-  padding: 7px;
-  margin-left: -20px;
-  margin-top: 20px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
+  font-weight: 400;
+  background: transparent;
+  color: #eee;
 `
 
 const ErrorMessage = styled.div`
@@ -130,7 +164,7 @@ const ErrorMessage = styled.div`
   margin-top: 15px;
 `
 const SuccessMessage = styled.div`
-  color: green;
-  font-weight: bold;
+  color: white;
+  font-weight: 400;
   margin-top: 15px;
 `

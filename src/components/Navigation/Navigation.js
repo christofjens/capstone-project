@@ -27,9 +27,11 @@ export default function Navigation() {
 const NavigationContainer = styled.nav`
   width: 100vw;
   max-width: 600px;
-  height: 48px;
+  height: 60px;
   margin: 0 auto;
-  background: #000;
+  background: rgba(30, 30, 30, 1);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -38,15 +40,14 @@ const NavigationContainer = styled.nav`
 const NavButton = styled(NavLink)`
   border: none;
   padding: auto 20px;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 400;
-  background: #000;
-  color: #eee;
+  color: rgba(255, 255, 255, 0.7);
 
   &.active {
-    color: orange;
+    color: rgba(255, 120, 0, 0.9);
   }
 `

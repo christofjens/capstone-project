@@ -33,10 +33,15 @@ export default function App() {
               <Route exact path="/loans">
                 <Loans />
               </Route>
+              <Route exact path="/ships">
+                <Ships />
+              </Route>
             </>
           </Switch>
         </ContentContainer>
-        <Navigation />
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
       </Router>
     </AppContainer>
   )
@@ -49,10 +54,16 @@ const AppContainer = styled.section`
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 48px;
+  position: relative;
 `
 
 const ContentContainer = styled.div`
   align-self: start;
   padding: 20px 20px 0 20px;
   overflow-y: scroll;
+`
+
+const NavigationContainer = styled.nav`
+  position: fixed;
+  bottom: 0;
 `
