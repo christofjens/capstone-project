@@ -1,13 +1,15 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import styled from 'styled-components'
 
 import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
+import Ships from './pages/ships/Ships'
 import useToken from './hooks/useToken'
-import Systems from './pages/systems/Systems'
+import Navigation from './components/Navigation/Navigation'
 
-function App() {
+export default function App() {
   const { token, setToken } = useToken()
 
   if (!token) {
@@ -19,17 +21,49 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Space Traders</h1>
+    <AppContainer>
       <Router>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/loans" component={Loans} />
-          <Route exact path="/systems" component={Systems} />
-        </Switch>
+        <ContentContainer>
+          <h1>Space Traders</h1>
+          <Switch>
+            <>
+              <Route exact path="/">
+                <Dashboard />
+              </Route>
+              <Route exact path="/loans">
+                <Loans />
+              </Route>
+              <Route exact path="/ships">
+                <Ships />
+              </Route>
+            </>
+          </Switch>
+        </ContentContainer>
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
       </Router>
-    </>
+    </AppContainer>
   )
 }
 
-export default App
+const AppContainer = styled.section`
+  align-items: end;
+  height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 48px;
+  position: relative;
+`
+
+const ContentContainer = styled.div`
+  align-self: start;
+  padding: 20px 20px 0 20px;
+  overflow-y: scroll;
+`
+
+const NavigationContainer = styled.nav`
+  position: fixed;
+  bottom: 0;
+`
