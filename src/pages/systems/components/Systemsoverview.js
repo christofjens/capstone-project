@@ -53,10 +53,12 @@ export default function SystemsOverview() {
             <SystemsOverviewContainer>
               <ul>
                 <li key={symbol}>
-                  {name} / {symbol}
+                  <ImportantSpan>
+                    {type} {name}
+                  </ImportantSpan>
                 </li>
                 <li>
-                  {type}, Grid x: {x}/y: {y}
+                  Grid x: {x}/y: {y}
                 </li>
                 <li>
                   {allowsConstruction === true
@@ -112,4 +114,8 @@ const LocationDetailButton = styled.button`
   font-weight: 400;
   background-color: transparent;
   color: #eee;
+`
+const ImportantSpan = styled.span`
+  font-weight: 400;
+  color: rgba(255, 120, 0, 0.9);
 `

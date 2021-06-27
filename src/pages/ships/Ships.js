@@ -49,7 +49,7 @@ const InnerNavigation = styled.div`
   height: 60px;
 
   margin: 0 0 0 -20px;
-  background: rgba(30, 30, 30, 1);
+  background: rgba(0, 18, 30, 1);
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   display: flex;
@@ -68,7 +68,7 @@ const InnerNavigationButton = styled.button`
   width: 45%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
-  font-weight: 400;
+  font-weight: 500;
   background-color: rgba(255, 255, 255, 0);
   color: #eee;
 `

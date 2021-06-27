@@ -26,12 +26,11 @@ export default function Dashboard() {
           <Highlight>Hello, {userData.username}!</Highlight>
         </li>
         <li>
-          <Highlight>Token:</Highlight>
-          {token}
-        </li>
-        <li>
           Your token has been saved in the app. To be completely sure you can
           log in to your game later, save it in a text file.
+        </li>
+        <li>
+          <Highlight>Token:</Highlight> {token}
         </li>
         <li>
           <Highlight>Credits:</Highlight> {userData.credits}
@@ -74,12 +73,15 @@ const LogOutButton = styled.button`
   font-size: 1rem;
   font-weight: 400;
   color: #eee;
-  background-color: transparent;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
 `
 const Highlight = styled.span`
   font-weight: 400;
-`
-const Important = styled.span`
   color: rgba(255, 120, 0, 0.9);
-  font-weight: 400;
 `

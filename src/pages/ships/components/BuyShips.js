@@ -114,7 +114,7 @@ export default function BuyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 400;
+  font-weight: 500;
   color: rgba(255, 120, 0, 0.9);
 `
 
@@ -153,8 +153,14 @@ const BuyButton = styled.button`
   padding: 10px 20px;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
-  font-weight: 400;
-  background: transparent;
+  font-weight: 500;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   color: #eee;
 `
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
@@ -24,8 +24,8 @@ export default function App() {
   return (
     <AppContainer>
       <Router>
+        {/* <Logo src={process.env.PUBLIC_URL + `/spacetraderslogo.png`} alt="" /> */}
         <ContentContainer>
-          <h1>Space Traders</h1>
           <Switch>
             <>
               <Route exact path="/">
@@ -70,4 +70,8 @@ const ContentContainer = styled.div`
 const NavigationContainer = styled.nav`
   position: fixed;
   bottom: 0;
+`
+const Logo = styled.image`
+  width: 300px;
+  height: 40px;
 `

@@ -98,7 +98,7 @@ export default function MyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 400;
+  font-weight: 500;
   color: rgba(255, 120, 0, 0.9);
 `
 
@@ -139,6 +139,11 @@ const ShipNavigationButton = styled.button`
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 400;
-  background-color: transparent;
+  background: transparent;
+  background: radial-gradient(
+    circle,
+    rgba(120, 190, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   color: #eee;
 `
