@@ -31,10 +31,6 @@ h1, h2, h3{
     color: #eee;
 }
 
-h3 {
-  margin-top: 40px;
-}
-
 input,
 textarea {
   font-size: inherit;

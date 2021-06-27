@@ -46,36 +46,39 @@ export default function SystemsOverview() {
   console.log(systemsOverview)
 
   return (
-    <SystemsOverviewList>
-      {systemsOverview.map(
-        ({ symbol, allowsConstruction, name, type, x, y }) => (
-          <div>
-            <SystemsOverviewContainer>
-              <ul>
-                <li key={symbol}>
-                  <ImportantSpan>
-                    {type} {name}
-                  </ImportantSpan>
-                </li>
-                <li>
-                  Grid x: {x}/y: {y}
-                </li>
-                <li>
-                  {allowsConstruction === true
-                    ? 'Construction of buildings is allowed'
-                    : 'Construction of buildings is not allowed'}
-                </li>
-              </ul>
-            </SystemsOverviewContainer>
-            <LocationDetailButtonContainer>
-              <LocationDetailButton onClick="">
-                GET {type} DETAILS
-              </LocationDetailButton>
-            </LocationDetailButtonContainer>
-          </div>
-        )
-      )}
-    </SystemsOverviewList>
+    <>
+      <h3>_System_Overview</h3>
+      <SystemsOverviewList>
+        {systemsOverview.map(
+          ({ symbol, allowsConstruction, name, type, x, y }) => (
+            <div>
+              <SystemsOverviewContainer>
+                <ul>
+                  <li key={symbol}>
+                    <ImportantSpan>
+                      {type} {name}
+                    </ImportantSpan>
+                  </li>
+                  <li>
+                    Grid x: {x}/y: {y}
+                  </li>
+                  <li>
+                    {allowsConstruction === true
+                      ? 'Construction of buildings is allowed'
+                      : 'Construction of buildings is not allowed'}
+                  </li>
+                </ul>
+              </SystemsOverviewContainer>
+              <LocationDetailButtonContainer>
+                <LocationDetailButton onClick="">
+                  GET {type} DETAILS
+                </LocationDetailButton>
+              </LocationDetailButtonContainer>
+            </div>
+          )
+        )}
+      </SystemsOverviewList>
+    </>
   )
 }
 

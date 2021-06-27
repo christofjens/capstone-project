@@ -43,6 +43,7 @@ export default function MyShips() {
 
   return (
     <div>
+      <h3>_My_Ships</h3>
       {myShips.map(
         ({
           flightPlanId,
@@ -111,16 +112,12 @@ const MyShipsList = styled.ul`
 `
 
 const MyShipsListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   border: none;
 `
 
 const Image = styled.div`
-  height: 120px;
-  width: 120px;
+  padding: 20px 0 0 0;
 `
 
 const ShipNavigation = styled.div`
@@ -128,8 +125,8 @@ const ShipNavigation = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 `
 
 const ShipNavigationButton = styled.button`
@@ -140,10 +137,5 @@ const ShipNavigationButton = styled.button`
   font-family: 'Titillium Web', monospace;
   font-weight: 400;
   background: transparent;
-  background: radial-gradient(
-    circle,
-    rgba(120, 190, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
   color: #eee;
 `

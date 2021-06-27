@@ -20,14 +20,18 @@ export default function Dashboard() {
 
   return (
     <>
-      <h2>Dashboard</h2>
+      <Logo src={process.env.PUBLIC_URL + `/spacetraderslogo.png`} alt="" />
+      <h2>
+        <BlinkingSpan>_</BlinkingSpan>Dashboard
+      </h2>
+      <h3>_Account_Info</h3>
       <UserDataWrapper>
         <li>
           <Highlight>Hello, {userData.username}!</Highlight>
         </li>
         <li>
-          Your token has been saved in the app. To be completely sure you can
-          log in to your game later, save it in a text file.
+          Your token has been stored locally. To be completely sure you can log
+          in to your game later, save it in a text file.
         </li>
         <li>
           <Highlight>Token:</Highlight> {token}
@@ -67,21 +71,40 @@ const LogOutButton = styled.button`
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 15px;
+  padding: 10px 20px;
   width: 100%;
   font-family: 'Titillium Web', monospace;
   font-size: 1rem;
   font-weight: 400;
   color: #eee;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: transparent;
 `
 const Highlight = styled.span`
   font-weight: 400;
   color: rgba(255, 120, 0, 0.9);
+`
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
+`
+const Logo = styled.image`
+  width: 300px;
+  height: 40px;
 `

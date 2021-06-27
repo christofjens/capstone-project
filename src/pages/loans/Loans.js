@@ -54,8 +54,10 @@ export default function Loans() {
 
   return (
     <>
-      <h2>Loans</h2>
-      <h3>Available Loans</h3>
+      <h2>
+        <BlinkingSpan>_</BlinkingSpan>Loans
+      </h2>
+      <h3>_Available_Loans</h3>
       {availableLoans.map(
         ({ amount, collateralRequired, rate, termInDays, type }) => (
           <section>
@@ -75,7 +77,7 @@ export default function Loans() {
           </section>
         )
       )}
-      <h3>Taken Loans</h3>
+      <h3>_Taken_Loans</h3>
       {takenLoans.map(({ type, status, repaymentAmount, due, id }) => (
         <section>
           <Myloans
@@ -95,4 +97,25 @@ const ErrorMessage = styled.div`
   color: crimson;
   font-weight: bold;
   margin-top: 15px;
+`
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
 `

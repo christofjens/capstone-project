@@ -17,7 +17,9 @@ export default function Ships() {
   return (
     <Main>
       <InnerMain>
-        <h2>Fleet</h2>
+        <h2>
+          <BlinkingSpan>_</BlinkingSpan>Fleet
+        </h2>
         {activeSection === 'myShips' ? <MyShips /> : <BuyShips />}
       </InnerMain>
       <InnerNavigation>
@@ -26,7 +28,7 @@ export default function Ships() {
         </InnerNavigationButton>
         {'/'}
         <InnerNavigationButton onClick={() => handleBuyNavigate()}>
-          BUY NEW SHIP
+          ADD NEW SHIP
         </InnerNavigationButton>
       </InnerNavigation>
     </Main>
@@ -47,7 +49,6 @@ const InnerNavigation = styled.div`
   width: 100%;
   max-width: 600px;
   height: 60px;
-
   margin: 0 0 0 -20px;
   background: rgba(0, 18, 30, 1);
   border: none;
@@ -71,4 +72,25 @@ const InnerNavigationButton = styled.button`
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0);
   color: #eee;
+`
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
 `
