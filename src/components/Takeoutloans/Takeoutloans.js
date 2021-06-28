@@ -15,12 +15,12 @@ export default function Takeoutloans({ loantype, takeOutLoan }) {
 }
 
 const Button = styled.button`
-  margin-top: 20px;
-  background-color: #fff;
-  border: 2px solid #666;
-  border-radius: 7px;
-  /* box-shadow: 0 0 20px #ff184c; */
-  padding: 10px;
-  color: #666;
+  border: none;
+  padding: 10px 20px;
   width: 100%;
+  font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
+  font-weight: 400;
+  background-color: transparent;
+  color: #eee;
 `

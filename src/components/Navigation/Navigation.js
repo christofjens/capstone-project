@@ -48,6 +48,6 @@ const NavButton = styled(NavLink)`
   color: rgba(255, 255, 255, 0.7);
 
   &.active {
-    color: rgba(255, 120, 0, 0.9);
+    color: rgba(255, 170, 0, 1);
   }
 `

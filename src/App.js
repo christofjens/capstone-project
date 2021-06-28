@@ -9,6 +9,7 @@ import Ships from './pages/ships/Ships'
 import Systems from './pages/systems/Systems'
 import useToken from './hooks/useToken'
 import Navigation from './components/Navigation/Navigation'
+import LocationDetail from './pages/systems/components/LocationDetail'
 
 export default function App() {
   const { token, setToken } = useToken()
@@ -39,6 +40,9 @@ export default function App() {
               </Route>
               <Route exact path="/systems">
                 <Systems />
+              </Route>
+              <Route exact path="/marketplace">
+                <LocationDetail />
               </Route>
             </>
           </Switch>
@@ -71,7 +75,7 @@ const NavigationContainer = styled.nav`
   position: fixed;
   bottom: 0;
 `
-const Logo = styled.image`
-  width: 300px;
-  height: 40px;
-`
+// const Logo = styled.image`
+//   width: 300px;
+//   height: 40px;
+// `

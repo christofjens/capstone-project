@@ -100,7 +100,7 @@ export default function MyShips() {
 
 const ImportantSpan = styled.span`
   font-weight: 500;
-  color: rgba(255, 120, 0, 0.9);
+  color: rgba(255, 170, 0, 1);
 `
 
 const MyShipsList = styled.ul`

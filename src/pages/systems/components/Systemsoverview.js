@@ -70,9 +70,7 @@ export default function SystemsOverview() {
                 </ul>
               </SystemsOverviewContainer>
               <LocationDetailButtonContainer>
-                <LocationDetailButton onClick="">
-                  GET {type} DETAILS
-                </LocationDetailButton>
+                <LocationDetailButton>GET {type} DETAILS</LocationDetailButton>
               </LocationDetailButtonContainer>
             </div>
           )
@@ -120,5 +118,5 @@ const LocationDetailButton = styled.button`
 `
 const ImportantSpan = styled.span`
   font-weight: 400;
-  color: rgba(255, 120, 0, 0.9);
+  color: rgba(255, 170, 0, 1);
 `

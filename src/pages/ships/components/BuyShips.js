@@ -116,7 +116,7 @@ export default function BuyShips() {
 
 const ImportantSpan = styled.span`
   font-weight: 500;
-  color: rgba(255, 120, 0, 0.9);
+  color: rgba(255, 170, 0, 1);
 `
 
 const ShipList = styled.div`
@@ -133,7 +133,7 @@ const ShipListContainer = styled.div`
 `
 
 const Image = styled.div`
-padding 20px 0;
+  padding: 20px 0;
 `
 const SubSection = styled.ul`
   display: flex;

@@ -81,7 +81,7 @@ const LogOutButton = styled.button`
 `
 const Highlight = styled.span`
   font-weight: 400;
-  color: rgba(255, 120, 0, 0.9);
+  color: rgba(255, 170, 0, 1);
 `
 
 const BlinkingSpan = styled.span`

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
-LocationDetail.propTypes = {
+MarketplaceDetail.propTypes = {
   allowsConstruction: PropTypes.bool,
   dockedShips: PropTypes.number,
   name: PropTypes.string,
@@ -14,53 +14,59 @@ LocationDetail.propTypes = {
   y: PropTypes.number,
 }
 
-export default function LocationDetail() {
-  const [locationDetail, setLocationDetail] = useState([])
+export default function MarketplaceDetail() {
+  const [marketplaceDetail, setMarketplaceDetail] = useState([])
   const { token } = loadFromLocal('token')
 
-  //remove useEffect, not neccessary
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/locations/OE-PM',
+        url: 'https://api.spacetraders.io/marketplaces/OE-PM-TR/marketplace',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        // data: { locationSymbol: 'OE-PM-TR' },
       })
-      setLocationDetail(result.data.location)
+      setMarketplaceDetail(result.data.marketplace)
     })()
-  }, [])
+  }, [setMarketplaceDetail, token])
 
   return (
     <div>
-      <h3>
-        Details for {locationDetail.type} {locationDetail.name}
-      </h3>
-      <LocationDetailList>
-        <ul>
-          <li>
-            <strong key={locationDetail.symbol}>
-              {locationDetail.name} / {locationDetail.symbol}
-            </strong>
-          </li>
-          <li>
-            {locationDetail.type}, Grid x: {locationDetail.x}/y:{' '}
-            {locationDetail.y}
-          </li>
-          <li>
-            {locationDetail.allowsConstruction === true
-              ? 'Construction of buildings is allowed'
-              : 'Construction of buildings is not allowed'}
-          </li>
-        </ul>
-      </LocationDetailList>
+      <h3>_MARKETPLACE_OE-PM-TR</h3>
+      <MarketplaceDetailList>
+        {marketplaceDetail.map(
+          ({
+            pricePerUnit,
+            purchasePricePerUnit,
+            quantityAvailable,
+            sellPricePerUnit,
+            spread,
+            symbol,
+            volumePerUnit,
+          }) => (
+            <ul>
+              <li>
+                <strong key={symbol}>_{symbol}</strong>
+              </li>
+              <li>{quantityAvailable} Units available</li>
+              <li>
+                Purchase price: {purchasePricePerUnit} / {volumePerUnit}
+              </li>
+              <li>
+                Sell price: {sellPricePerUnit} / {volumePerUnit}
+              </li>
+            </ul>
+          )
+        )}
+      </MarketplaceDetailList>
     </div>
   )
 }
 
-const LocationDetailList = styled.ul`
+const MarketplaceDetailList = styled.ul`
   margin-top: 40px;
   li {
     list-style: none;
