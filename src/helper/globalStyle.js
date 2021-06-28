@@ -11,10 +11,10 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: 'Titillium Web', monospace;
-  font-size: 1.1rem;
-  font-weight: 200;
-  color: #eee;
-  line-height: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.7rem;
   height: 100vh;
   background-color: darkslategray;
   background-image: url(${backgroundImage}), url(${backgroundImage0});
@@ -29,10 +29,6 @@ h1, h2, h3{
     text-align: right;
     text-transform: uppercase;
     color: #eee;
-}
-
-h3 {
-  margin-top: 40px;
 }
 
 input,

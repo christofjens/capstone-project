@@ -1,98 +1,96 @@
 import styled from 'styled-components/macro'
-import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../helper/localStorage'
-import axios from 'axios'
 import Showloans from '../../components/Showloans/Showloans'
 import Myloans from '../../components/Myloans/Myloans'
+import { useState } from 'react'
 
 export default function Loans() {
-  const [error, setError] = useState('')
-  const [availableLoans, setAvailableLoans] = useState([])
-  const [takenLoans, setTakenLoans] = useState([])
-  const { token } = loadFromLocal('token')
+  const [activeSection, setActiveSection] = useState('myLoans')
 
-  console.log(token)
+  const handleMyLoansNavigate = () => {
+    setActiveSection('myLoans')
+  }
 
-  useEffect(() => {
-    ;(async () => {
-      const result = await axios.get(
-        'https://api.spacetraders.io/types/loans',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      setAvailableLoans(result.data.loans)
-    })()
-    ;(async () => {
-      const result = await axios.get('https://api.spacetraders.io/my/loans', {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setTakenLoans(result.data.loans)
-    })()
-  }, [])
-
-  function handleTakeOutLoan(type) {
-    try {
-      axios({
-        method: 'post',
-        url: 'https://api.spacetraders.io/my/loans',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: { type: `${type}` },
-      })
-    } catch (error) {
-      setError(error.message)
-    }
+  const handleShowLoansNavigate = () => {
+    setActiveSection('showLoans')
   }
 
   return (
-    <>
-      <h2>Loans</h2>
-      <h3>Available Loans</h3>
-      {availableLoans.map(
-        ({ amount, collateralRequired, rate, termInDays, type }) => (
-          <section>
-            <Showloans
-              amount={amount}
-              type={type}
-              key={type}
-              loantype={type}
-              collateralRequired={collateralRequired}
-              termInDays={termInDays}
-              rate={rate}
-            />
-            <button onClick={() => handleTakeOutLoan(type)}>
-              Take the {type} loan.
-            </button>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-          </section>
-        )
-      )}
-      <h3>Taken Loans</h3>
-      {takenLoans.map(({ type, status, repaymentAmount, due, id }) => (
-        <section>
-          <Myloans
-            type={type}
-            status={status}
-            repaymentAmount={repaymentAmount}
-            due={due}
-            key={id}
-          />
-        </section>
-      ))}
-    </>
+    <Main>
+      <InnerMain>
+        <h2>
+          <BlinkingSpan>_</BlinkingSpan>Loans
+        </h2>
+        {activeSection === 'myLoans' ? <Myloans /> : <Showloans />}
+      </InnerMain>
+      <InnerNavigation>
+        <InnerNavigationButton onClick={() => handleMyLoansNavigate()}>
+          YOUR LOANS
+        </InnerNavigationButton>
+        {'/'}
+        <InnerNavigationButton onClick={() => handleShowLoansNavigate()}>
+          TAKE NEW LOAN
+        </InnerNavigationButton>
+      </InnerNavigation>
+    </Main>
   )
 }
 
-const ErrorMessage = styled.div`
-  color: crimson;
-  font-weight: bold;
-  margin-top: 15px;
+const Main = styled.section`
+  display: grid;
+  grid-template-rows: auto 60px;
+  position: relative;
+`
+
+const InnerMain = styled.div`
+  overflow-y: scroll;
+`
+
+const InnerNavigation = styled.div`
+  width: 100%;
+  max-width: 600px;
+  height: 60px;
+  margin: 0 0 0 -20px;
+  background: rgba(0, 18, 30, 1);
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 60px;
+`
+
+const InnerNavigationButton = styled.button`
+  border: none;
+  /* border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px 20px; */
+  padding: 10px 20px;
+  width: 45%;
+  font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0);
+  color: #eee;
+`
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
 `

@@ -3,6 +3,7 @@ import { ReactComponent as HomeIcon } from '../../assets/icons/home-outline.svg'
 import { ReactComponent as RocketIcon } from '../../assets/icons/rocket-outline.svg'
 import { ReactComponent as PlanetIcon } from '../../assets/icons/planet-outline.svg'
 import { ReactComponent as CashIcon } from '../../assets/icons/cash-outline.svg'
+import { ReactComponent as BusinessIcon } from '../../assets/icons/business-outline.svg'
 import { NavLink } from 'react-router-dom'
 
 export default function Navigation() {
@@ -14,7 +15,10 @@ export default function Navigation() {
       <NavButton exact to="/ships" activeClassName="active">
         <RocketIcon />
       </NavButton>
-      <NavButton exact to="/systems" activeClassName="active">
+      <NavButton exact to="/buildings">
+        <BusinessIcon />
+      </NavButton>
+      <NavButton to="/systems" activeClassName="active">
         <PlanetIcon />
       </NavButton>
       <NavButton exact to="/loans" activeClassName="active">
@@ -29,7 +33,7 @@ const NavigationContainer = styled.nav`
   max-width: 600px;
   height: 60px;
   margin: 0 auto;
-  background: rgba(30, 30, 30, 1);
+  background: rgba(0, 18, 30, 1);
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   display: flex;
@@ -48,6 +52,6 @@ const NavButton = styled(NavLink)`
   color: rgba(255, 255, 255, 0.7);
 
   &.active {
-    color: rgba(255, 120, 0, 0.9);
+    color: rgba(255, 170, 0, 1);
   }
 `

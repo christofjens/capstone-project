@@ -31,19 +31,21 @@ export default function Register({ setToken }) {
   return (
     <>
       <P>
-        <Important>To register a new account</Important>, please enter a
-        username:
+        <ImportantSpan>To register a new account,</ImportantSpan>
+        <br />
+        please enter a username:
       </P>
       <form onSubmit={handleSubmit}>
         <label>
           <Input
             type="text"
             value={username}
+            placeholder="Username"
             onChange={e => setUsername(e.target.value)}
           />
         </label>
         <Button disabled={!username} type="submit">
-          Submit
+          REGISTER
         </Button>
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </form>
@@ -52,36 +54,40 @@ export default function Register({ setToken }) {
 }
 
 const Input = styled.input`
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   margin-top: 20px;
-  background-color: #fff;
-  border: 2px solid #666;
-  border-radius: 7px 0 0 7px;
-  /* box-shadow: 0 0 20px #ff184c; */
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
-  color: #666;
-  min-width: 75%;
+  color: #eee;
+  min-width: 100%;
+  text-align: center;
 `
 const Button = styled.button`
-  margin-top: 20px;
-  background-color: #fff;
-  border: 2px solid #666;
-  border-radius: 0 7px 7px 0;
-  /* box-shadow: 0 0 20px #ff184c; */
-  padding: 10px;
-  color: #666;
-  min-width: 80px;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 10px 20px;
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Titillium Web', monospace;
+  font-weight: 500;
+  background: transparent;
+  color: #eee;
 `
 const P = styled.p`
   margin-top: 80px;
+  padding: 0 20px;
 `
 
-const Important = styled.span`
-  color: crimson;
+const ImportantSpan = styled.span`
+  color: rgba(255, 170, 0, 1);
   font-weight: bold;
   margin-top: 10px;
 `
 const ErrorMessage = styled.div`
-  color: crimson;
+  color: rgba(255, 170, 0, 1);
   font-weight: bold;
   margin-top: 15px;
 `

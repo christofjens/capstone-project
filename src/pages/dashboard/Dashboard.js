@@ -20,18 +20,21 @@ export default function Dashboard() {
 
   return (
     <>
-      <h2>Dashboard</h2>
+      <Logo src={process.env.PUBLIC_URL + `/spacetraderslogo.png`} alt="" />
+      <h2>
+        <BlinkingSpan>_</BlinkingSpan>Dashboard
+      </h2>
+      <h3>_Account_Info</h3>
       <UserDataWrapper>
         <li>
           <Highlight>Hello, {userData.username}!</Highlight>
         </li>
         <li>
-          <Highlight>Token:</Highlight>
-          {token}
+          Your token has been stored locally. To be completely sure you can log
+          in to your game later, save it in a text file.
         </li>
         <li>
-          Your token has been saved in the app. To be completely sure you can
-          log in to your game later, save it in a text file.
+          <Highlight>Token:</Highlight> {token}
         </li>
         <li>
           <Highlight>Credits:</Highlight> {userData.credits}
@@ -57,11 +60,7 @@ export default function Dashboard() {
 }
 
 const UserDataWrapper = styled.ul`
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; */
-  padding: 20px;
-  margin-top: 40px;
+  padding: 30px 20px 20px 20px;
   border: none;
   list-style: none;
   li {
@@ -72,18 +71,40 @@ const LogOutButton = styled.button`
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 15px;
+  padding: 10px 20px;
   width: 100%;
   font-family: 'Titillium Web', monospace;
   font-size: 1rem;
   font-weight: 400;
   color: #eee;
-  background-color: transparent;
+  background: transparent;
 `
 const Highlight = styled.span`
   font-weight: 400;
+  color: rgba(255, 170, 0, 1);
 `
-const Important = styled.span`
-  color: rgba(255, 120, 0, 0.9);
-  font-weight: 400;
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
+`
+const Logo = styled.image`
+  width: 300px;
+  height: 40px;
 `

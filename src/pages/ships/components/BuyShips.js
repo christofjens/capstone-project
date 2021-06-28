@@ -61,6 +61,7 @@ export default function BuyShips() {
 
   return (
     <div>
+      <h3>_Add_New_Ship</h3>
       {buyShips.map(
         ({
           manufacturer,
@@ -114,8 +115,8 @@ export default function BuyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 400;
-  color: rgba(255, 120, 0, 0.9);
+  font-weight: 500;
+  color: rgba(255, 170, 0, 1);
 `
 
 const ShipList = styled.div`
@@ -127,16 +128,12 @@ const ShipList = styled.div`
 `
 
 const ShipListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding: 20px 20px 0 20px;
   border: 0;
 `
 
 const Image = styled.div`
-  height: 150px;
-  width: 150px;
+  padding: 20px 0;
 `
 const SubSection = styled.ul`
   display: flex;
@@ -153,7 +150,7 @@ const BuyButton = styled.button`
   padding: 10px 20px;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
-  font-weight: 400;
+  font-weight: 500;
   background: transparent;
   color: #eee;
 `
