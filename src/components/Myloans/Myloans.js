@@ -45,20 +45,22 @@ export default function Showloans() {
 
   return (
     <>
-      <h3>_Taken_Loans</h3>
+      <h3>_Your_Loans</h3>
       {takenLoans.map(({ type, status, repaymentAmount, due, id }) => (
         <LoanListContainer>
           <LoanList>
             <ul>
-              <li>Loan Type: {type}</li>
+              <li>
+                <ImportantSpan>Loan Type: {type}</ImportantSpan>
+              </li>
               <li>Status: {status}</li>
-              <li>Repayable amount: {repaymentAmount}%</li>
-              <li>Due on {due} days</li>
+              <li>Repayable amount: {repaymentAmount} Credits</li>
+              <li>Due on {due}</li>
             </ul>
           </LoanList>
           <RepayLoanButtonContainer>
             <RepayLoanButton onClick={() => handleRepayLoan(type)}>
-              REPAY THE {type} LOAN.
+              REPAY YOUR {type} LOAN
             </RepayLoanButton>
           </RepayLoanButtonContainer>
           {/* {error && <ErrorMessage>{error}</ErrorMessage>} */}
@@ -69,7 +71,7 @@ export default function Showloans() {
 }
 
 const LoanList = styled.div`
-  padding: 20px 0 0 0;
+  padding: 20px;
   border: none;
   li {
     list-style: none;
@@ -77,7 +79,7 @@ const LoanList = styled.div`
 `
 
 const LoanListContainer = styled.div`
-  padding: 20px 20px 0 20px;
+  padding: 20px 0 0 0;
   border: 0;
 `
 
@@ -86,7 +88,7 @@ const RepayLoanButtonContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 `
@@ -102,7 +104,7 @@ const RepayLoanButton = styled.button`
   color: #eee;
 `
 
-// const ImportantSpan = styled.span`
-//   font-weight: 600;
-//   color: rgba(255, 120, 0, 1);
-// `
+const ImportantSpan = styled.span`
+  font-weight: 600;
+  color: rgba(255, 170, 0, 1);
+`

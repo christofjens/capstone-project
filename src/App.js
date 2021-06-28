@@ -41,7 +41,7 @@ export default function App() {
               <Route exact path="/systems">
                 <Systems />
               </Route>
-              <Route exact path="/marketplace">
+              <Route exact path="/locationdetail">
                 <LocationDetail />
               </Route>
             </>

@@ -1,27 +1,11 @@
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { loadFromLocal } from '../../../helper/localStorage'
+import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 SystemsOverview.propTypes = {
-  cargo: PropTypes.array,
-  flightPlanId: PropTypes.string,
-  id: PropTypes.string,
-  location: PropTypes.string,
-  manufacturer: PropTypes.string,
-  maxCargo: PropTypes.number,
-  plating: PropTypes.number,
-  spaceAvailable: PropTypes.number,
-  speed: PropTypes.number,
-  type: PropTypes.string,
-  weapons: PropTypes.number,
-  x: PropTypes.number,
-  y: PropTypes.number,
-  setSystemsOverview: PropTypes.func,
-  allowsConstruction: PropTypes.bool,
-  dockedShips: PropTypes.number,
-  name: PropTypes.string,
   symbol: PropTypes.string,
 }
 
@@ -57,7 +41,8 @@ export default function SystemsOverview() {
                   <li key={symbol}>
                     <ImportantSpan>
                       {type} {name}
-                    </ImportantSpan>
+                    </ImportantSpan>{' '}
+                    ({symbol})
                   </li>
                   <li>
                     Grid x: {x}/y: {y}
@@ -70,7 +55,9 @@ export default function SystemsOverview() {
                 </ul>
               </SystemsOverviewContainer>
               <LocationDetailButtonContainer>
-                <LocationDetailButton>GET {type} DETAILS</LocationDetailButton>
+                <LocationDetailButton exact to="locationdetail">
+                  GET {type} DETAILS
+                </LocationDetailButton>
               </LocationDetailButtonContainer>
             </div>
           )
@@ -81,7 +68,7 @@ export default function SystemsOverview() {
 }
 
 const SystemsOverviewList = styled.ul`
-  margin-top: 20px;
+  margin-top: 10px;
   border: none;
   li {
     list-style: none;
@@ -92,7 +79,7 @@ const SystemsOverviewContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   border: none;
 `
 
@@ -101,12 +88,12 @@ const LocationDetailButtonContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 `
 
-const LocationDetailButton = styled.button`
+const LocationDetailButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 100%;
@@ -115,6 +102,8 @@ const LocationDetailButton = styled.button`
   font-weight: 400;
   background-color: transparent;
   color: #eee;
+  text-decoration: none;
+  text-align: center;
 `
 const ImportantSpan = styled.span`
   font-weight: 400;

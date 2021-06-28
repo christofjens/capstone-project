@@ -3,14 +3,20 @@ import PropTypes from 'prop-types'
 
 Takeoutloans.propTypes = {
   takeOutLoan: PropTypes.func,
+  handleMyLoansNavigate: PropTypes.func,
   loantype: PropTypes.string,
 }
 
-export default function Takeoutloans({ loantype, takeOutLoan }) {
+export default function Takeoutloans({
+  loantype,
+  takeOutLoan,
+  handleMyLoansNavigate,
+}) {
   return <Button conClick={handleTakeOutLoan} />
 
   function handleTakeOutLoan() {
     takeOutLoan(loantype)
+    handleMyLoansNavigate('myLoans')
   }
 }
 
