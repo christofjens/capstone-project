@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { loadFromLocal } from '../../helper/localStorage'
+import { loadFromLocal } from '../../../helper/localStorage'
 
 Showloans.propTypes = {
   type: PropTypes.string,

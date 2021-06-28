@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Showloans from './Showloans'
+import Showloans from '../components/Showloans'
 
 describe('Showloans', () => {
   it('renders loan facts', () => {
@@ -17,9 +17,7 @@ describe('Showloans', () => {
     expect(screen.getByText('100000 Credits')).toBeInTheDocument()
     expect(screen.getByText('Interest rate: 40%')).toBeInTheDocument()
     expect(
-      screen.getByText(
-        /.*loan.*2 days.*no collateral/i
-      )
+      screen.getByText(/.*loan.*2 days.*no collateral/i)
     ).toBeInTheDocument()
   })
 })
