@@ -25,9 +25,9 @@ export default function Systems({ symbol }) {
         <BlinkingSpan>_</BlinkingSpan>Systems
       </h2>
       {activeSection === 'systemsOverview' ? (
-        <Systemsoverview symbol={symbol} />
+        <Systemsoverview />
       ) : (
-        <LocationDetail />
+        <LocationDetail symbol={symbol} />
       )}
     </Main>
   )

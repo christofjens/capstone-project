@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../../utils/localStorage'
+import { loadFromLocal } from '../../utils/localStorage'
 import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
-LocationDetail.propTypes = {
+MarketplaceDetail.propTypes = {
   pricePerUnit: PropTypes.number,
   purchasePricePerUnit: PropTypes.number,
   quantityAvailable: PropTypes.number,
@@ -13,8 +13,8 @@ LocationDetail.propTypes = {
   volumePerUnit: PropTypes.number,
 }
 
-export default function LocationDetail() {
-  const [locationDetail, setLocationDetail] = useState([])
+export default function MarketplaceDetail() {
+  const [marketplaceDetail, setMarketplaceDetail] = useState([])
   const { token } = loadFromLocal('token')
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export default function LocationDetail() {
           Authorization: `Bearer ${token}`,
         },
       })
-      setLocationDetail(result.data.marketplace)
+      setMarketplaceDetail(result.data.marketplace)
     })()
-  }, [setLocationDetail, token])
+  }, [setMarketplaceDetail, token])
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function LocationDetail() {
         <BlinkingSpan>_</BlinkingSpan>Systems
       </h2>
       <h3>_Marketplace_OE-PM-TR</h3>
-      {locationDetail.map(
+      {marketplaceDetail.map(
         ({
           pricePerUnit,
           purchasePricePerUnit,

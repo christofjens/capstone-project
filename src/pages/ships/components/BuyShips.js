@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../../helper/localStorage'
+import { loadFromLocal } from '../../../utils/localStorage'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
@@ -80,10 +80,10 @@ export default function BuyShips() {
                     {manufacturer} {type}
                   </ImportantSpan>
                 </li>
-                <li>Cargo: {maxCargo}</li>
-                <li>Speed: {speed}</li>
-                <li>Plating: {plating}</li>
-                <li>Weapons: {weapons}</li>
+                <li>Max. cargo: {maxCargo}</li>
+                <li>
+                  Speed: {speed} / Plating: {plating} / Weapons: {weapons}
+                </li>
               </ul>
               <Image>
                 <img

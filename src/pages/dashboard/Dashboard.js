@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { loadFromLocal, removeFromLocal } from '../../helper/localStorage'
+import { loadFromLocal, removeFromLocal } from '../../utils/localStorage'
 
 export default function Dashboard() {
   const { token } = loadFromLocal('token')

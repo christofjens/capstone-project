@@ -1,12 +1,19 @@
 import styled from 'styled-components/macro'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { loadFromLocal } from '../../../helper/localStorage'
+import { loadFromLocal } from '../../../utils/localStorage'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
 SystemsOverview.propTypes = {
+  allowsConstruction: PropTypes.bool,
+  dockedShips: PropTypes.number,
+  name: PropTypes.string,
   symbol: PropTypes.string,
+  key: PropTypes.string,
+  type: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
 }
 
 export default function SystemsOverview() {
@@ -27,18 +34,16 @@ export default function SystemsOverview() {
     })()
   }, [])
 
-  console.log(systemsOverview)
-
   return (
     <>
       <h3>_System_Overview</h3>
       <SystemsOverviewList>
         {systemsOverview.map(
           ({ symbol, allowsConstruction, name, type, x, y }) => (
-            <div>
+            <div key={symbol}>
               <SystemsOverviewContainer>
                 <ul>
-                  <li key={symbol}>
+                  <li>
                     <ImportantSpan>
                       {type} {name}
                     </ImportantSpan>{' '}
@@ -55,7 +60,7 @@ export default function SystemsOverview() {
                 </ul>
               </SystemsOverviewContainer>
               <LocationDetailButtonContainer>
-                <LocationDetailButton exact to="locationdetail">
+                <LocationDetailButton to="/systems/locationdetail">
                   GET {type} DETAILS
                 </LocationDetailButton>
               </LocationDetailButtonContainer>
