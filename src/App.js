@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import Ships from './pages/ships/Ships'
+import Marketplace from './pages/marketplace/Marketplace'
 import Systems from './pages/systems/Systems'
 import LocationDetail from './pages/systems/components/LocationDetail'
 import useToken from './hooks/useToken'
@@ -36,6 +37,12 @@ export default function App() {
                 <Loans />
               </Route>
               <Route exact path="/ships">
+                <Ships />
+              </Route>
+              <Route exact path="/ships/marketplace">
+                <Marketplace />
+              </Route>
+              <Route exact path="/ships/travel">
                 <Ships />
               </Route>
               <Route exact path="/systems">
