@@ -53,7 +53,7 @@ export default function BuyShips() {
         },
         data: { type: `${type}`, location: `${location}` },
       })
-      setSuccess(`${type} ship added to your fleet!`)
+      setSuccess(`1 ${type} ship added to your fleet!`)
     } catch (error) {
       setError(error.message)
     }
@@ -96,17 +96,21 @@ export default function BuyShips() {
               <SubSection>
                 <ul>
                   <li>Available at {location} </li>
-                  <li>for {price} Credits</li>
+                  <li>
+                    for {new Intl.NumberFormat('de-DE').format(price)} Credits
+                  </li>
                 </ul>
                 <div>
                   <BuyButton onClick={() => handleBuyShip(type, location)}>
                     BUY
                   </BuyButton>
                 </div>
-                {success && <SuccessMessage>{success}</SuccessMessage>}
-                {error && <ErrorMessage>{error}</ErrorMessage>}
               </SubSection>
             ))}
+            <Messages>
+              {success && <SuccessMessage>{success}</SuccessMessage>}
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </Messages>
           </ShipList>
         )
       )}
@@ -161,7 +165,10 @@ const ErrorMessage = styled.div`
   margin-top: 15px;
 `
 const SuccessMessage = styled.div`
-  color: white;
+  color: rgba(0, 250, 0, 1);
   font-weight: 400;
   margin-top: 15px;
+`
+const Messages = styled.div`
+  padding: 0 20px;
 `

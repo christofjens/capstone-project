@@ -37,7 +37,8 @@ export default function Dashboard() {
           <Highlight>Token:</Highlight> {token}
         </li>
         <li>
-          <Highlight>Credits:</Highlight> {userData.credits}
+          <Highlight>Credits:</Highlight>{' '}
+          {new Intl.NumberFormat('de-DE').format(userData.credits)}
         </li>
         <li>
           <Highlight>Ships:</Highlight> {userData.shipCount}

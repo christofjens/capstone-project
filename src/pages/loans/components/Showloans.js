@@ -58,7 +58,10 @@ export default function Showloans() {
                 <li>
                   <ImportantSpan>Loan Type: {type}</ImportantSpan>
                 </li>
-                <li>Amount: {amount} Credits</li>
+                <li>
+                  Amount: {new Intl.NumberFormat('de-DE').format(amount)}{' '}
+                  Credits
+                </li>
                 <li>Interes Rate: {rate}%</li>
                 <li>Due within {termInDays} days</li>
                 <li>{collateralRequired} </li>

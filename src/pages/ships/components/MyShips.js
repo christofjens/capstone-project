@@ -3,6 +3,7 @@ import { loadFromLocal } from '../../../utils/localStorage'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 MyShips.propTypes = {
   cargo: PropTypes.array,
@@ -85,9 +86,13 @@ export default function MyShips() {
                 />
               </Image>
               <ShipNavigation>
-                <ShipNavigationButton>TRAVEL</ShipNavigationButton>
+                <ShipNavigationButton to="/ships/travel">
+                  TRAVEL
+                </ShipNavigationButton>
                 {'/'}
-                <ShipNavigationButton>TRADE</ShipNavigationButton>
+                <ShipNavigationButton to="/ships/trade">
+                  TRADE
+                </ShipNavigationButton>
               </ShipNavigation>
             </MyShipsList>
           </div>
@@ -131,7 +136,7 @@ const ShipNavigation = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 `
 
-const ShipNavigationButton = styled.button`
+const ShipNavigationButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 45%;
@@ -140,4 +145,6 @@ const ShipNavigationButton = styled.button`
   font-weight: 400;
   background: transparent;
   color: #eee;
+  text-decoration: none;
+  text-align: center;
 `

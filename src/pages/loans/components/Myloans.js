@@ -10,9 +10,10 @@ Showloans.propTypes = {
   repaymentAmount: PropTypes.number,
   id: PropTypes.string,
   due: PropTypes.string,
+  isActive: PropTypes.node,
 }
 
-export default function Showloans() {
+export default function Showloans({ isActive }) {
   const [takenLoans, setTakenLoans] = useState([])
   const { token } = loadFromLocal('token')
 
@@ -51,11 +52,23 @@ export default function Showloans() {
           <LoanList>
             <ul>
               <li>
-                <ImportantSpan>Loan Type: {type}</ImportantSpan>
+                <ImportantSpan>{type} loan</ImportantSpan>
               </li>
-              <li>Status: {status}</li>
-              <li>Repayable amount: {repaymentAmount} Credits</li>
-              <li>Due on {due}</li>
+              <li>Status: {status.toLowerCase()}</li>
+              <li>
+                Repayable amount:{' '}
+                {new Intl.NumberFormat('de-DE').format(repaymentAmount)} Credits
+              </li>
+              <li>
+                Due on{' '}
+                {new Intl.DateTimeFormat('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }).format(new Date(due))}
+              </li>
             </ul>
           </LoanList>
           <RepayLoanButtonContainer>
