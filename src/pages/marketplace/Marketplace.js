@@ -53,12 +53,15 @@ export default function MarketplaceDetail() {
                   <ImportantSpan key={symbol}>{symbol}</ImportantSpan>
                 </li>
                 <li>Available: {quantityAvailable} Units</li>
-                <li>
-                  Buy for {purchasePricePerUnit} Credits / {volumePerUnit} unit
-                </li>
-                <li>
-                  Sell for {sellPricePerUnit} Credits / {volumePerUnit} unit
-                </li>
+                <BuySellContainer>
+                  <li>
+                    Buy for {purchasePricePerUnit} Credits / {volumePerUnit}{' '}
+                    unit
+                  </li>
+                  <li>
+                    Sell for {sellPricePerUnit} Credits / {volumePerUnit} unit
+                  </li>
+                </BuySellContainer>
               </ul>
             </ShipListContainer>
           </ShipList>
@@ -86,38 +89,8 @@ const ShipListContainer = styled.div`
   border: 0;
 `
 
-const Image = styled.div`
-  padding: 20px 0;
-`
-const SubSection = styled.ul`
+const BuySellContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px 20px 20px;
-  border: none;
-`
-const BuyButton = styled.button`
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
-  background: transparent;
-  color: #eee;
-`
-
-const ErrorMessage = styled.div`
-  color: crimson;
-  font-weight: bold;
-  margin-top: 15px;
-`
-const SuccessMessage = styled.div`
-  color: white;
-  font-weight: 400;
-  margin-top: 15px;
 `
 
 const BlinkingSpan = styled.span`
