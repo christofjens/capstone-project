@@ -1,5 +1,5 @@
-import Login from '../../components/Login/Login'
-import Register from '../../components/Register/Register'
+import Login from './components/Login'
+import Register from './components/Register'
 import styled from 'styled-components'
 
 export default function Splash({ setToken }) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../../helper/localStorage'
+import { loadFromLocal } from '../../../utils/localStorage'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
@@ -65,26 +65,25 @@ export default function MyShips() {
               <MyShipsListContainer>
                 <ul>
                   <li>
-                    <ImportantSpan key={type}>{manufacturer}</ImportantSpan>
+                    <ImportantSpan key={type}>
+                      {manufacturer} {type}
+                    </ImportantSpan>
                   </li>
                   <li>
-                    <ImportantSpan>{type}</ImportantSpan>
+                    Cargo space available: {spaceAvailable} of {maxCargo}
                   </li>
                   <li>
-                    Cargo: {spaceAvailable} of {maxCargo}
+                    Speed: {speed} / Plating: {plating} / Weapons: {weapons}
                   </li>
-                  <li>Speed: {speed}</li>
-                  <li>Plating: {plating}</li>
-                  <li>Weapons: {weapons}</li>
                   <li>Location: {location}</li>
                 </ul>
-                <Image>
-                  <img
-                    src={process.env.PUBLIC_URL + `/shipId_${type}.png`}
-                    alt=""
-                  />
-                </Image>
               </MyShipsListContainer>
+              <Image>
+                <img
+                  src={process.env.PUBLIC_URL + `/shipId_${type}.png`}
+                  alt=""
+                />
+              </Image>
               <ShipNavigation>
                 <ShipNavigationButton>TRAVEL</ShipNavigationButton>
                 {'/'}
@@ -114,6 +113,9 @@ const MyShipsList = styled.ul`
 const MyShipsListContainer = styled.div`
   padding: 20px 20px 0 20px;
   border: none;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: flex-start; */
 `
 
 const Image = styled.div`

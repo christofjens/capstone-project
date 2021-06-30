@@ -7,9 +7,9 @@ import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import Ships from './pages/ships/Ships'
 import Systems from './pages/systems/Systems'
+import LocationDetail from './pages/systems/components/LocationDetail'
 import useToken from './hooks/useToken'
 import Navigation from './components/Navigation/Navigation'
-import LocationDetail from './pages/systems/components/LocationDetail'
 
 export default function App() {
   const { token, setToken } = useToken()
@@ -41,7 +41,7 @@ export default function App() {
               <Route exact path="/systems">
                 <Systems />
               </Route>
-              <Route exact path="/locationdetail">
+              <Route path="/systems/locationdetails">
                 <LocationDetail />
               </Route>
             </>

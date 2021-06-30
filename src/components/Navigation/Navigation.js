@@ -15,7 +15,7 @@ export default function Navigation() {
       <NavButton exact to="/ships" activeClassName="active">
         <RocketIcon />
       </NavButton>
-      <NavButton exact to="/buildings">
+      <NavButton exact to="/buildings" activeClassName="active">
         <BusinessIcon />
       </NavButton>
       <NavButton to="/systems" activeClassName="active">

@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
-import Showloans from '../../components/Showloans/Showloans'
-import Myloans from '../../components/Myloans/Myloans'
+import Showloans from './components/Showloans'
+import Myloans from './components/Myloans'
 import { useState } from 'react'
 
 export default function Loans() {

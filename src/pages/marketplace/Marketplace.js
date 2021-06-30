@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { loadFromLocal } from '../../../utils/localStorage'
+import { loadFromLocal } from '../../utils/localStorage'
 import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
-LocationDetail.propTypes = {
+MarketplaceDetail.propTypes = {
   pricePerUnit: PropTypes.number,
   purchasePricePerUnit: PropTypes.number,
   quantityAvailable: PropTypes.number,
@@ -13,8 +13,8 @@ LocationDetail.propTypes = {
   volumePerUnit: PropTypes.number,
 }
 
-export default function LocationDetail() {
-  const [locationDetail, setLocationDetail] = useState([])
+export default function MarketplaceDetail() {
+  const [marketplaceDetail, setMarketplaceDetail] = useState([])
   const { token } = loadFromLocal('token')
 
   useEffect(() => {
@@ -27,9 +27,9 @@ export default function LocationDetail() {
           Authorization: `Bearer ${token}`,
         },
       })
-      setLocationDetail(result.data.marketplace)
+      setMarketplaceDetail(result.data.marketplace)
     })()
-  }, [setLocationDetail, token])
+  }, [setMarketplaceDetail, token])
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function LocationDetail() {
         <BlinkingSpan>_</BlinkingSpan>Systems
       </h2>
       <h3>_Marketplace_OE-PM-TR</h3>
-      {locationDetail.map(
+      {marketplaceDetail.map(
         ({
           pricePerUnit,
           purchasePricePerUnit,
@@ -53,12 +53,15 @@ export default function LocationDetail() {
                   <ImportantSpan key={symbol}>{symbol}</ImportantSpan>
                 </li>
                 <li>Available: {quantityAvailable} Units</li>
-                <li>
-                  Buy for {purchasePricePerUnit} Credits / {volumePerUnit} unit
-                </li>
-                <li>
-                  Sell for {sellPricePerUnit} Credits / {volumePerUnit} unit
-                </li>
+                <BuySellContainer>
+                  <li>
+                    Buy for {purchasePricePerUnit} Credits / {volumePerUnit}{' '}
+                    unit
+                  </li>
+                  <li>
+                    Sell for {sellPricePerUnit} Credits / {volumePerUnit} unit
+                  </li>
+                </BuySellContainer>
               </ul>
             </ShipListContainer>
           </ShipList>
@@ -86,38 +89,8 @@ const ShipListContainer = styled.div`
   border: 0;
 `
 
-const Image = styled.div`
-  padding: 20px 0;
-`
-const SubSection = styled.ul`
+const BuySellContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px 20px 20px;
-  border: none;
-`
-const BuyButton = styled.button`
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
-  background: transparent;
-  color: #eee;
-`
-
-const ErrorMessage = styled.div`
-  color: crimson;
-  font-weight: bold;
-  margin-top: 15px;
-`
-const SuccessMessage = styled.div`
-  color: white;
-  font-weight: 400;
-  margin-top: 15px;
 `
 
 const BlinkingSpan = styled.span`
