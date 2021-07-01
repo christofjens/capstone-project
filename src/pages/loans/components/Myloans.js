@@ -13,7 +13,7 @@ Showloans.propTypes = {
   isActive: PropTypes.node,
 }
 
-export default function Showloans({ isActive }) {
+export default function Showloans() {
   const [takenLoans, setTakenLoans] = useState([])
   const { token } = loadFromLocal('token')
 
@@ -44,9 +44,35 @@ export default function Showloans({ isActive }) {
     }
   }
 
+  if (!takenLoans.length) {
+    return (
+      <>
+        <h3>_Your_Loans</h3>
+        <LoanListContainer>
+          <LoanList>
+            <ul>
+              <li>
+                <ImportantSpan>No loans.</ImportantSpan>
+              </li>
+              <li>
+                You have no current loans. Click on GET NEW LOAN to take out a
+                new loan.
+              </li>
+            </ul>
+          </LoanList>
+        </LoanListContainer>
+      </>
+    )
+  }
+
   return (
     <>
       <h3>_Your_Loans</h3>
+      {/* {takenLoans.length ? (
+        takenLoans
+      ) : (
+
+      )} */}
       {takenLoans.map(({ type, status, repaymentAmount, due, id }) => (
         <LoanListContainer>
           <LoanList>

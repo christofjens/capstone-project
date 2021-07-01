@@ -40,6 +40,27 @@ export default function MyShips() {
     })()
   }, [])
 
+  if (!myShips.length) {
+    return (
+      <div>
+        <h3>_My_Ships</h3>
+        <MyShipsList>
+          <MyShipsListContainer>
+            <ul>
+              <li>
+                <ImportantSpan>No ships.</ImportantSpan>
+              </li>
+              <li>
+                You have no ships yet. To purchase your first ship click on ADD
+                NEW SHIP
+              </li>
+            </ul>
+          </MyShipsListContainer>
+        </MyShipsList>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h3>_My_Ships</h3>

@@ -62,7 +62,7 @@ export default function GetLoans() {
                   Amount: {new Intl.NumberFormat('de-DE').format(amount)}{' '}
                   Credits
                 </li>
-                <li>Interes Rate: {rate}%</li>
+                <li>Interest Rate: {rate}%</li>
                 <li>Due within {termInDays} days</li>
                 <li>{collateralRequired} </li>
               </ul>
