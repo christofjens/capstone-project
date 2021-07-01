@@ -26,8 +26,6 @@ export default function MyShips() {
   const [myShips, setMyShips] = useState([])
   const { token } = loadFromLocal('token')
 
-  console.log(myShips)
-
   useEffect(() => {
     ;(async () => {
       const result = await axios({

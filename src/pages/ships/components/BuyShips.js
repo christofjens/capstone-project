@@ -27,21 +27,17 @@ export default function BuyShips() {
   const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
 
-  console.log(buyShips)
-
-  useEffect(() => {
-    ;(async () => {
-      const result = await axios({
-        method: 'get',
-        url: 'https://api.spacetraders.io/systems/OE/ship-listings',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setBuyShips(result.data.shipListings)
-    })()
-  }, [])
+  ;(async () => {
+    const result = await axios({
+      method: 'get',
+      url: 'https://api.spacetraders.io/systems/OE/ship-listings',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setBuyShips(result.data.shipListings)
+  })()
 
   function handleBuyShip(type, location) {
     try {

@@ -46,6 +46,9 @@ export default function MarketplaceDetail() {
       })
       setShipInfo(result.data.ship)
     })()
+  }, [])
+
+  useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
