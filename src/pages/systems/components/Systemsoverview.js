@@ -60,10 +60,7 @@ export default function SystemsOverview() {
                 </ul>
               </SystemsOverviewContainer>
               <LocationDetailButtonContainer>
-                <LocationDetailButton
-                  to="/systems/locationdetail"
-                  activeClassName="active"
-                >
+                <LocationDetailButton exact to="/systems/detail">
                   GET {type} DETAILS
                 </LocationDetailButton>
               </LocationDetailButtonContainer>

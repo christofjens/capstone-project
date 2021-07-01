@@ -1,5 +1,5 @@
 import MyLoans from './components/MyLoans'
-import ShowLoans from './components/ShowLoans'
+import GetLoans from './components/GetLoans'
 import styled from 'styled-components/macro'
 import { Route, NavLink } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ export default function Loans() {
           <BlinkingSpan>_</BlinkingSpan>Loans
         </h2>
         <Route exact path="/loans" component={MyLoans} />
-        <Route exact path="/loans/get" component={ShowLoans} />
+        <Route exact path="/loans/get" component={GetLoans} />
       </InnerMain>
       <InnerNavigation>
         <InnerNavigationButton exact to="/loans">

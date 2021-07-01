@@ -6,10 +6,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import Ships from './pages/ships/Ships'
-import Trade from './pages/ships/components/Trade'
-import Travel from './pages/ships/components/Travel'
 import Systems from './pages/systems/Systems'
-import LocationDetail from './pages/systems/components/LocationDetail'
 import Navigation from './components/Navigation/Navigation'
 
 export default function App() {
@@ -20,41 +17,30 @@ export default function App() {
   }
 
   return (
-    <AppContainer>
-      <Router>
-        {/* <Logo src={process.env.PUBLIC_URL + `/spacetraderslogo.png`} alt="" /> */}
-        <ContentContainer>
-          <Switch>
-            <>
-              <Route exact path="/">
-                <Dashboard />
-              </Route>
-              <Route exact path="/loans">
-                <Loans />
-              </Route>
-              <Route path="/ships">
-                <Ships />
-              </Route>
-              <Route path="/ships/trade">
-                <Trade />
-              </Route>
-              <Route path="/ships/travel">
-                <Travel />
-              </Route>
-              <Route exact path="/systems">
-                <Systems />
-              </Route>
-              <Route path="/systems/locationdetails">
-                <LocationDetail />
-              </Route>
-            </>
-          </Switch>
-        </ContentContainer>
-        <NavigationContainer>
-          <Navigation />
-        </NavigationContainer>
-      </Router>
-    </AppContainer>
+    <Router>
+      <Switch>
+        <AppContainer>
+          {/* <Logo src={process.env.PUBLIC_URL + `/spacetraderslogo.png`} alt="" /> */}
+          <ContentContainer>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route exact path="/loans">
+              <Loans />
+            </Route>
+            <Route path="/ships">
+              <Ships />
+            </Route>
+            <Route exact path="/systems">
+              <Systems />
+            </Route>
+          </ContentContainer>
+          <NavigationContainer>
+            <Navigation />
+          </NavigationContainer>
+        </AppContainer>
+      </Switch>
+    </Router>
   )
 }
 
