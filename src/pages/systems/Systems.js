@@ -1,7 +1,5 @@
 import styled from 'styled-components/macro'
 import Systemsoverview from './components/Systemsoverview'
-import LocationDetail from './components/LocationDetail'
-import { useState } from 'react'
 import PropTyes from 'prop-types'
 
 Systems.propTypes = {

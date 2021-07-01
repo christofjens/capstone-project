@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-
+import useToken from './hooks/useToken'
 import Dashboard from './pages/dashboard/Dashboard'
 import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
@@ -10,18 +10,13 @@ import Trade from './pages/ships/components/Trade'
 import Travel from './pages/ships/components/Travel'
 import Systems from './pages/systems/Systems'
 import LocationDetail from './pages/systems/components/LocationDetail'
-import useToken from './hooks/useToken'
 import Navigation from './components/Navigation/Navigation'
 
 export default function App() {
   const { token, setToken } = useToken()
 
   if (!token) {
-    return (
-      <>
-        <Splash setToken={setToken} />
-      </>
-    )
+    return <Splash setToken={setToken} />
   }
 
   return (
@@ -37,7 +32,7 @@ export default function App() {
               <Route exact path="/loans">
                 <Loans />
               </Route>
-              <Route exact path="/ships">
+              <Route path="/ships">
                 <Ships />
               </Route>
               <Route path="/ships/trade">
@@ -75,7 +70,7 @@ const AppContainer = styled.section`
 
 const ContentContainer = styled.div`
   align-self: start;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 100px 20px;
   overflow-y: scroll;
 `
 

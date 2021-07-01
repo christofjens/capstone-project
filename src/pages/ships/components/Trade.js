@@ -18,8 +18,11 @@ export default function MarketplaceDetail() {
   const [marketplaceDetail, setMarketplaceDetail] = useState([])
   const [shipInfo, setShipInfo] = useState({})
   const [shipCargo, setShipCargo] = useState([])
+  const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
+  const shipId = 'ckqjv7i0484984415s60mnvggqg'
 
+  // get Marketplace and Goods
   useEffect(() => {
     ;(async () => {
       const result = await axios({
@@ -34,11 +37,12 @@ export default function MarketplaceDetail() {
     })()
   }, [])
 
+  // get Info on Ship
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/my/ships/ckqjv7i0484984415s60mnvggqg',
+        url: 'https://api.spacetraders.io/my/ships/' + shipId,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -48,11 +52,12 @@ export default function MarketplaceDetail() {
     })()
   }, [])
 
+  // get Info on Ship's cargo
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/my/ships/ckqjv7i0484984415s60mnvggqg',
+        url: 'https://api.spacetraders.io/my/ships/' + shipId,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -62,6 +67,47 @@ export default function MarketplaceDetail() {
     })()
   }, [])
 
+  // BUY Goods
+  function handleBuyGoods(shipId, quantity, symbol) {
+    try {
+      axios({
+        method: 'post',
+        url: 'https://api.spacetraders.io/my/purchase-orders',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          shipId: `${shipId}`,
+          quantity: `${quantity}`,
+          good: `${symbol}`,
+        },
+      })
+      setSuccess(`${quantity} ${symbol} added to your cargo!`)
+    } catch (error) {
+      // setError(error.message)
+    }
+  }
+
+  // SELL Goods
+  function handleSellGoods(shipId, quantity, symbol) {
+    try {
+      axios({
+        method: 'post',
+        url: 'https://api.spacetraders.io/my/sell-orders',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          shipId: `${shipId}`,
+          quantity: `${quantity}`,
+          good: `${symbol}`,
+        },
+      })
+      // setSuccess(`${quantity} ${good} ship added/removed from your cargo!`)
+    } catch (error) {
+      // setError(error.message)
+    }
+  }
   return (
     <Main>
       <InnerMain>
@@ -97,26 +143,48 @@ export default function MarketplaceDetail() {
               <ShipListContainer>
                 <SubSection>
                   <ul>
-                    <li>{symbol} </li>
                     <li>
-                      <ImportantSpan>
-                        Buy for {purchasePricePerUnit}
-                      </ImportantSpan>{' '}
-                      Credits or
+                      <ImportantSpan>{symbol}</ImportantSpan>
                     </li>
-                    <li>
-                      <ImportantSpan>sell for {sellPricePerUnit}</ImportantSpan>{' '}
-                      Credits
-                    </li>
+                    <li>Purchase price: {purchasePricePerUnit} Credits</li>
+                    <li>Selling price: {sellPricePerUnit} Credits</li>
                   </ul>
                   <BuySellContainer>
-                    <BuySellButton>-10</BuySellButton>
+                    <BuySellButton
+                      value="10"
+                      onClick={e =>
+                        handleSellGoods(shipId, e.currentTarget.value, symbol)
+                      }
+                    >
+                      -10
+                    </BuySellButton>
                     {'/'}
-                    <BuySellButton>-1</BuySellButton>
+                    <BuySellButton
+                      value="1"
+                      onClick={e =>
+                        handleSellGoods(shipId, e.currentTarget.value, symbol)
+                      }
+                    >
+                      -1
+                    </BuySellButton>
                     {'/'}
-                    <BuySellButton>+1</BuySellButton>
+                    <BuySellButton
+                      value="1"
+                      onClick={e =>
+                        handleBuyGoods(shipId, e.currentTarget.value, symbol)
+                      }
+                    >
+                      +1
+                    </BuySellButton>
                     {'/'}
-                    <BuySellButton>+10</BuySellButton>
+                    <BuySellButton
+                      value="10"
+                      onClick={e =>
+                        handleBuyGoods(shipId, e.currentTarget.value, symbol)
+                      }
+                    >
+                      +10
+                    </BuySellButton>
                   </BuySellContainer>
                 </SubSection>
               </ShipListContainer>
@@ -126,7 +194,7 @@ export default function MarketplaceDetail() {
       </InnerMain>
       <InnerNavigation>
         <InnerNavigationButton to="/ships">
-          RETURN TO SHIPS
+          RETURN TO YOUR SHIPS
         </InnerNavigationButton>
       </InnerNavigation>
     </Main>
@@ -161,11 +229,12 @@ const InnerNavigation = styled.div`
 const InnerNavigationButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
-  width: 45%;
+  width: 100%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 500;
   text-decoration: none;
+  text-align: center;
   background-color: transparent;
   color: #eee;
 `

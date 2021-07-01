@@ -1,34 +1,25 @@
+import MyLoans from './components/MyLoans'
+import ShowLoans from './components/ShowLoans'
 import styled from 'styled-components/macro'
-import Showloans from './components/Showloans'
-import Myloans from './components/Myloans'
-import { useState } from 'react'
+import { Route, NavLink } from 'react-router-dom'
 
 export default function Loans() {
-  const [activeSection, setActiveSection] = useState('myLoans')
-
-  const handleMyLoansNavigate = () => {
-    setActiveSection('myLoans')
-  }
-
-  const handleShowLoansNavigate = () => {
-    setActiveSection('showLoans')
-  }
-
   return (
     <Main>
       <InnerMain>
         <h2>
           <BlinkingSpan>_</BlinkingSpan>Loans
         </h2>
-        {activeSection === 'myLoans' ? <Myloans /> : <Showloans />}
+        <Route exact path="/loans" component={MyLoans} />
+        <Route exact path="/loans/get" component={ShowLoans} />
       </InnerMain>
       <InnerNavigation>
-        <InnerNavigationButton onClick={() => handleMyLoansNavigate()}>
+        <InnerNavigationButton exact to="/loans">
           YOUR LOANS
         </InnerNavigationButton>
         {'/'}
-        <InnerNavigationButton onClick={() => handleShowLoansNavigate()}>
-          TAKE NEW LOAN
+        <InnerNavigationButton exact to="/loans/get">
+          GET NEW LOAN
         </InnerNavigationButton>
       </InnerNavigation>
     </Main>
@@ -60,18 +51,21 @@ const InnerNavigation = styled.div`
   bottom: 60px;
 `
 
-const InnerNavigationButton = styled.button`
+const InnerNavigationButton = styled(NavLink)`
   border: none;
-  /* border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px 20px; */
   padding: 10px 20px;
   width: 45%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 500;
-  background-color: rgba(255, 255, 255, 0);
+  text-decoration: none;
+  text-align: center;
+  background-color: transparent;
   color: #eee;
+
+  &.active {
+    color: rgba(255, 170, 0, 1);
+  }
 `
 
 const BlinkingSpan = styled.span`
