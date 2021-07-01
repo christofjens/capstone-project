@@ -7,6 +7,7 @@ import Loans from './pages/loans/Loans'
 import Splash from './pages/splash/Splash'
 import Ships from './pages/ships/Ships'
 import Trade from './pages/ships/components/Trade'
+import Travel from './pages/ships/components/Travel'
 import Systems from './pages/systems/Systems'
 import LocationDetail from './pages/systems/components/LocationDetail'
 import useToken from './hooks/useToken'
@@ -43,7 +44,7 @@ export default function App() {
                 <Trade />
               </Route>
               <Route path="/ships/travel">
-                <Ships />
+                <Travel />
               </Route>
               <Route exact path="/systems">
                 <Systems />

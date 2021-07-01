@@ -3,7 +3,6 @@ import { ReactComponent as HomeIcon } from '../../assets/icons/home-outline.svg'
 import { ReactComponent as RocketIcon } from '../../assets/icons/rocket-outline.svg'
 import { ReactComponent as PlanetIcon } from '../../assets/icons/planet-outline.svg'
 import { ReactComponent as CashIcon } from '../../assets/icons/cash-outline.svg'
-import { ReactComponent as BusinessIcon } from '../../assets/icons/business-outline.svg'
 import { NavLink } from 'react-router-dom'
 
 export default function Navigation() {
@@ -15,10 +14,7 @@ export default function Navigation() {
       <NavButton exact to="/ships" activeClassName="active">
         <RocketIcon />
       </NavButton>
-      <NavButton exact to="/buildings" activeClassName="active">
-        <BusinessIcon />
-      </NavButton>
-      <NavButton to="/systems" activeClassName="active">
+      <NavButton exact to="/systems" activeClassName="active">
         <PlanetIcon />
       </NavButton>
       <NavButton exact to="/loans" activeClassName="active">

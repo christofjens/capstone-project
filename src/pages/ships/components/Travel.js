@@ -36,7 +36,10 @@ export default function SystemsOverview() {
 
   return (
     <>
-      <h3>_System_Overview</h3>
+      <h2>
+        <BlinkingSpan>_</BlinkingSpan>Fleet
+      </h2>
+      <h3>_TRAVEL</h3>
       <SystemsOverviewList>
         {systemsOverview.map(
           ({ symbol, allowsConstruction, name, type, x, y }) => (
@@ -64,7 +67,7 @@ export default function SystemsOverview() {
                   to="/systems/locationdetail"
                   activeClassName="active"
                 >
-                  GET {type} DETAILS
+                  TRAVEL TO {symbol}
                 </LocationDetailButton>
               </LocationDetailButtonContainer>
             </div>
@@ -76,7 +79,7 @@ export default function SystemsOverview() {
 }
 
 const SystemsOverviewList = styled.ul`
-  margin-top: 10px;
+  margin-top: 40px;
   border: none;
   li {
     list-style: none;
@@ -116,4 +119,25 @@ const LocationDetailButton = styled(NavLink)`
 const ImportantSpan = styled.span`
   font-weight: 400;
   color: rgba(255, 170, 0, 1);
+`
+
+const BlinkingSpan = styled.span`
+  animation: blinkingText 1.2s infinite;
+  @keyframes blinkingText {
+    0% {
+      color: #fff;
+    }
+    49% {
+      color: #fff;
+    }
+    50% {
+      color: transparent;
+    }
+    99% {
+      color: transparent;
+    }
+    100% {
+      color: #fff;
+    }
+  }
 `

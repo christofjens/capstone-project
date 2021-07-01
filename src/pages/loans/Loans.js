@@ -71,7 +71,7 @@ const InnerNavigationButton = styled.button`
   font-family: 'Titillium Web', monospace;
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0);
-  color: rgba(255, 170, 0, 1);
+  color: #eee;
 `
 
 const BlinkingSpan = styled.span`

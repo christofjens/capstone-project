@@ -1,5 +1,6 @@
 import Login from './components/Login'
 import Register from './components/Register'
+import Servercheck from './components/Servercheck'
 import styled from 'styled-components'
 
 export default function Splash({ setToken }) {
@@ -12,6 +13,7 @@ export default function Splash({ setToken }) {
         <h3>_REGISTER_OR_LOGIN</h3>
         <Register setToken={setToken} />
         <Login setToken={setToken} />
+        <Servercheck />
       </ContentContainer>
     </AppContainer>
   )

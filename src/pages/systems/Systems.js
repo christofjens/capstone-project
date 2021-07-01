@@ -9,26 +9,12 @@ Systems.propTypes = {
 }
 
 export default function Systems({ symbol }) {
-  const [activeSection, setActiveSection] = useState('systemsOverview')
-
-  const handleSystemsOverviewNavigate = () => {
-    setActiveSection('systemsOverview')
-  }
-
-  const handleLocationDetailNavigate = () => {
-    setActiveSection('locationDetail')
-  }
-
   return (
     <Main>
       <h2>
         <BlinkingSpan>_</BlinkingSpan>Systems
       </h2>
-      {activeSection === 'systemsOverview' ? (
-        <Systemsoverview />
-      ) : (
-        <LocationDetail symbol={symbol} />
-      )}
+      <Systemsoverview />
     </Main>
   )
 }
