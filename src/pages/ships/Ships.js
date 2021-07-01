@@ -1,33 +1,24 @@
 import MyShips from './components/MyShips'
 import BuyShips from './components/BuyShips'
 import styled from 'styled-components/macro'
-import { useState } from 'react'
+import { Route, NavLink } from 'react-router-dom'
 
 export default function Ships() {
-  const [activeSection, setActiveSection] = useState('myShips')
-
-  const handleMyNavigate = () => {
-    setActiveSection('myShips')
-  }
-
-  const handleBuyNavigate = () => {
-    setActiveSection('buyShips')
-  }
-
   return (
     <Main>
       <InnerMain>
         <h2>
           <BlinkingSpan>_</BlinkingSpan>Fleet
         </h2>
-        {activeSection === 'myShips' ? <MyShips /> : <BuyShips />}
+        <Route exact path="/ships/buy" component={BuyShips} />
+        <Route exact path="/ships" component={MyShips} />
       </InnerMain>
       <InnerNavigation>
-        <InnerNavigationButton onClick={() => handleMyNavigate()}>
-          YOUR FLEET
+        <InnerNavigationButton exact to="/ships">
+          YOUR SHIPS
         </InnerNavigationButton>
         {'/'}
-        <InnerNavigationButton onClick={() => handleBuyNavigate()}>
+        <InnerNavigationButton exact to="/ships/buy">
           ADD NEW SHIP
         </InnerNavigationButton>
       </InnerNavigation>
@@ -60,18 +51,21 @@ const InnerNavigation = styled.div`
   bottom: 60px;
 `
 
-const InnerNavigationButton = styled.button`
+const InnerNavigationButton = styled(NavLink)`
   border: none;
-  /* border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px 20px; */
   padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
   width: 45%;
   font-size: 1rem;
   font-family: 'Titillium Web', monospace;
   font-weight: 500;
-  background-color: rgba(255, 255, 255, 0);
-  color: #eee;
+  background-color: transparent;
+  color: #fff;
+
+  &.active {
+    color: rgba(255, 170, 0, 1);
+  }
 `
 
 const BlinkingSpan = styled.span`

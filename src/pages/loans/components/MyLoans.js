@@ -10,6 +10,7 @@ Showloans.propTypes = {
   repaymentAmount: PropTypes.number,
   id: PropTypes.string,
   due: PropTypes.string,
+  isActive: PropTypes.node,
 }
 
 export default function Showloans() {
@@ -43,19 +44,57 @@ export default function Showloans() {
     }
   }
 
+  if (!takenLoans.length) {
+    return (
+      <>
+        <h3>_Your_Loans</h3>
+        <LoanListContainer>
+          <LoanList>
+            <ul>
+              <li>
+                <ImportantSpan>No loans.</ImportantSpan>
+              </li>
+              <li>
+                You have no current loans. Click on GET NEW LOAN to take out a
+                new loan.
+              </li>
+            </ul>
+          </LoanList>
+        </LoanListContainer>
+      </>
+    )
+  }
+
   return (
     <>
       <h3>_Your_Loans</h3>
+      {/* {takenLoans.length ? (
+        takenLoans
+      ) : (
+
+      )} */}
       {takenLoans.map(({ type, status, repaymentAmount, due, id }) => (
         <LoanListContainer>
           <LoanList>
             <ul>
               <li>
-                <ImportantSpan>Loan Type: {type}</ImportantSpan>
+                <ImportantSpan>{type} loan</ImportantSpan>
               </li>
-              <li>Status: {status}</li>
-              <li>Repayable amount: {repaymentAmount} Credits</li>
-              <li>Due on {due}</li>
+              <li>Status: {status.toLowerCase()}</li>
+              <li>
+                Repayable amount:{' '}
+                {new Intl.NumberFormat('de-DE').format(repaymentAmount)} Credits
+              </li>
+              <li>
+                Due on{' '}
+                {new Intl.DateTimeFormat('en-GB', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }).format(new Date(due))}
+              </li>
             </ul>
           </LoanList>
           <RepayLoanButtonContainer>
@@ -97,14 +136,10 @@ const RepayLoanButton = styled.button`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background-color: transparent;
-  color: #eee;
+  color: #fff;
 `
 
 const ImportantSpan = styled.span`
-  font-weight: 600;
   color: rgba(255, 170, 0, 1);
 `

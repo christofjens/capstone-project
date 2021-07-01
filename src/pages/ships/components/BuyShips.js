@@ -27,8 +27,6 @@ export default function BuyShips() {
   const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
 
-  console.log(buyShips)
-
   useEffect(() => {
     ;(async () => {
       const result = await axios({
@@ -53,7 +51,7 @@ export default function BuyShips() {
         },
         data: { type: `${type}`, location: `${location}` },
       })
-      setSuccess(`${type} ship added to your fleet!`)
+      setSuccess(`1 ${type} ship added to your fleet!`)
     } catch (error) {
       setError(error.message)
     }
@@ -96,17 +94,21 @@ export default function BuyShips() {
               <SubSection>
                 <ul>
                   <li>Available at {location} </li>
-                  <li>for {price} Credits</li>
+                  <li>
+                    for {new Intl.NumberFormat('de-DE').format(price)} Credits
+                  </li>
                 </ul>
                 <div>
                   <BuyButton onClick={() => handleBuyShip(type, location)}>
                     BUY
                   </BuyButton>
                 </div>
-                {success && <SuccessMessage>{success}</SuccessMessage>}
-                {error && <ErrorMessage>{error}</ErrorMessage>}
               </SubSection>
             ))}
+            <Messages>
+              {success && <SuccessMessage>{success}</SuccessMessage>}
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </Messages>
           </ShipList>
         )
       )}
@@ -115,7 +117,6 @@ export default function BuyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 500;
   color: rgba(255, 170, 0, 1);
 `
 
@@ -148,11 +149,8 @@ const BuyButton = styled.button`
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 20px;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
   background: transparent;
-  color: #eee;
+  color: #fff;
 `
 
 const ErrorMessage = styled.div`
@@ -161,7 +159,9 @@ const ErrorMessage = styled.div`
   margin-top: 15px;
 `
 const SuccessMessage = styled.div`
-  color: white;
-  font-weight: 400;
+  color: rgba(0, 250, 0, 1);
   margin-top: 15px;
+`
+const Messages = styled.div`
+  padding: 0 20px;
 `

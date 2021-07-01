@@ -3,6 +3,7 @@ import { loadFromLocal } from '../../../utils/localStorage'
 import styled from 'styled-components/macro'
 import axios from 'axios'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 MyShips.propTypes = {
   cargo: PropTypes.array,
@@ -25,8 +26,6 @@ export default function MyShips() {
   const [myShips, setMyShips] = useState([])
   const { token } = loadFromLocal('token')
 
-  console.log(myShips)
-
   useEffect(() => {
     ;(async () => {
       const result = await axios({
@@ -41,9 +40,30 @@ export default function MyShips() {
     })()
   }, [])
 
+  if (!myShips.length) {
+    return (
+      <div>
+        <h3>_Your_Ships</h3>
+        <MyShipsList>
+          <MyShipsListContainer>
+            <ul>
+              <li>
+                <ImportantSpan>No ships.</ImportantSpan>
+              </li>
+              <li>
+                You have no ships yet. To purchase your first ship click on ADD
+                NEW SHIP
+              </li>
+            </ul>
+          </MyShipsListContainer>
+        </MyShipsList>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <h3>_My_Ships</h3>
+      <h3>_Your_Ships</h3>
       {myShips.map(
         ({
           flightPlanId,
@@ -85,9 +105,13 @@ export default function MyShips() {
                 />
               </Image>
               <ShipNavigation>
-                <ShipNavigationButton>TRAVEL</ShipNavigationButton>
+                <ShipNavigationButton to="/ships/travel">
+                  TRAVEL
+                </ShipNavigationButton>
                 {'/'}
-                <ShipNavigationButton>TRADE</ShipNavigationButton>
+                <ShipNavigationButton to="/ships/trade">
+                  TRADE
+                </ShipNavigationButton>
               </ShipNavigation>
             </MyShipsList>
           </div>
@@ -98,7 +122,6 @@ export default function MyShips() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 500;
   color: rgba(255, 170, 0, 1);
 `
 
@@ -115,7 +138,6 @@ const MyShipsListContainer = styled.div`
   border: none;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: flex-start; */
 `
 
 const Image = styled.div`
@@ -131,13 +153,12 @@ const ShipNavigation = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 `
 
-const ShipNavigationButton = styled.button`
+const ShipNavigationButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 45%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background: transparent;
-  color: #eee;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
 `

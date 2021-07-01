@@ -1,10 +1,10 @@
-import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { loadFromLocal } from '../../../utils/localStorage'
+import styled from 'styled-components/macro'
+import axios from 'axios'
+import PropTypes from 'prop-types'
 
-Showloans.propTypes = {
+GetLoans.propTypes = {
   type: PropTypes.string,
   amount: PropTypes.number,
   rate: PropTypes.number,
@@ -12,8 +12,9 @@ Showloans.propTypes = {
   collateralRequired: PropTypes.bool,
 }
 
-export default function Showloans() {
-  // const [error, setError] = useState('')
+export default function GetLoans() {
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [availableLoans, setAvailableLoans] = useState([])
   const { token } = loadFromLocal('token')
 
@@ -30,7 +31,7 @@ export default function Showloans() {
       )
       setAvailableLoans(result.data.loans)
     })()
-  }, [])
+  }, [token])
 
   function handleTakeOutLoan(type) {
     try {
@@ -42,13 +43,14 @@ export default function Showloans() {
         },
         data: { type: `${type}` },
       })
+      setSuccess(`1 ${type} loan taken!`)
     } catch (error) {
-      // setError(error.message)
+      setError(error.message)
     }
   }
 
   return (
-    <>
+    <div>
       <h3>_Take_New_Loan</h3>
       {availableLoans.map(
         ({ amount, collateralRequired, rate, termInDays, type }) => (
@@ -58,8 +60,11 @@ export default function Showloans() {
                 <li>
                   <ImportantSpan>Loan Type: {type}</ImportantSpan>
                 </li>
-                <li>Amount: {amount} Credits</li>
-                <li>Interes Rate: {rate}%</li>
+                <li>
+                  Amount: {new Intl.NumberFormat('de-DE').format(amount)}{' '}
+                  Credits
+                </li>
+                <li>Interest Rate: {rate}%</li>
                 <li>Due within {termInDays} days</li>
                 <li>{collateralRequired} </li>
               </ul>
@@ -69,19 +74,24 @@ export default function Showloans() {
                 TAKE THE {type} LOAN
               </TakeOutLoanButton>
             </TakeOutLoanButtonContainer>
-            {/* {error && <ErrorMessage>{error}</ErrorMessage>} */}
+            {success && <SuccessMessage>{success}</SuccessMessage>}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
           </LoanListContainer>
         )
       )}
-    </>
+    </div>
   )
 }
 
-// const ErrorMessage = styled.div`
-//   color: crimson;
-//   font-weight: bold;
-//   margin-top: 15px;
-// `
+const ErrorMessage = styled.div`
+  color: crimson;
+  padding: 20px;
+`
+
+const SuccessMessage = styled.div`
+  color: rgba(0, 250, 0, 1);
+  padding: 20px;
+`
 
 const LoanList = styled.div`
   padding: 20px;
@@ -110,14 +120,10 @@ const TakeOutLoanButton = styled.button`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background-color: transparent;
   color: #eee;
 `
 
 const ImportantSpan = styled.span`
-  font-weight: 600;
   color: rgba(255, 170, 0, 1);
 `

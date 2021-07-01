@@ -1,7 +1,5 @@
 import styled from 'styled-components/macro'
 import Systemsoverview from './components/Systemsoverview'
-import LocationDetail from './components/LocationDetail'
-import { useState } from 'react'
 import PropTyes from 'prop-types'
 
 Systems.propTypes = {
@@ -9,26 +7,12 @@ Systems.propTypes = {
 }
 
 export default function Systems({ symbol }) {
-  const [activeSection, setActiveSection] = useState('systemsOverview')
-
-  const handleSystemsOverviewNavigate = () => {
-    setActiveSection('systemsOverview')
-  }
-
-  const handleLocationDetailNavigate = () => {
-    setActiveSection('locationDetail')
-  }
-
   return (
     <Main>
       <h2>
         <BlinkingSpan>_</BlinkingSpan>Systems
       </h2>
-      {activeSection === 'systemsOverview' ? (
-        <Systemsoverview />
-      ) : (
-        <LocationDetail symbol={symbol} />
-      )}
+      <Systemsoverview />
     </Main>
   )
 }

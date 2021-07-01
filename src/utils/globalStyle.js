@@ -32,9 +32,10 @@ h1, h2, h3{
 }
 
 input,
-textarea {
-  font-size: inherit;
-  font-family: inherit;
+textarea,
+button {
+  font-size: 1.125rem;
+  font-family: 'Titillium Web', monospace;
 }
 
 `

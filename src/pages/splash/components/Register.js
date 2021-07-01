@@ -60,7 +60,7 @@ const Input = styled.input`
   margin-top: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
-  color: #eee;
+  color: #fff;
   min-width: 100%;
   text-align: center;
 `
@@ -70,11 +70,8 @@ const Button = styled.button`
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
   background: transparent;
-  color: #eee;
+  color: #fff;
 `
 const P = styled.p`
   margin-top: 80px;
@@ -83,11 +80,9 @@ const P = styled.p`
 
 const ImportantSpan = styled.span`
   color: rgba(255, 170, 0, 1);
-  font-weight: bold;
   margin-top: 10px;
 `
 const ErrorMessage = styled.div`
   color: rgba(255, 170, 0, 1);
-  font-weight: bold;
   margin-top: 15px;
 `
