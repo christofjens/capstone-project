@@ -10,8 +10,8 @@ export default function Ships() {
         <h2>
           <BlinkingSpan>_</BlinkingSpan>Fleet
         </h2>
-        <Route exact path="/ships" component={MyShips} />
         <Route exact path="/ships/buy" component={BuyShips} />
+        <Route exact path="/ships" component={MyShips} />
       </InnerMain>
       <InnerNavigation>
         <InnerNavigationButton exact to="/ships">
