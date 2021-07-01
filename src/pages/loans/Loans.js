@@ -55,9 +55,6 @@ const InnerNavigationButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 45%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
   text-decoration: none;
   text-align: center;
   background-color: transparent;

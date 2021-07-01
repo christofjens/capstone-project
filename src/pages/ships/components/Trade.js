@@ -16,9 +16,9 @@ MarketplaceDetail.propTypes = {
 
 export default function MarketplaceDetail() {
   const [marketplaceDetail, setMarketplaceDetail] = useState([])
-  const [shipInfo, setShipInfo] = useState({})
+  const [shipInfo, setShipInfo] = useState([])
   const [shipCargo, setShipCargo] = useState([])
-  const [success, setSuccess] = useState('')
+  // const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
   const shipId = 'ckqjv7i0484984415s60mnvggqg'
 
@@ -82,7 +82,7 @@ export default function MarketplaceDetail() {
           good: `${symbol}`,
         },
       })
-      setSuccess(`${quantity} ${symbol} added to your cargo!`)
+      // setSuccess(`${quantity} ${symbol} added to your cargo!`)
     } catch (error) {
       // setError(error.message)
     }
@@ -114,9 +114,9 @@ export default function MarketplaceDetail() {
         <h2>
           <BlinkingSpan>_</BlinkingSpan>Fleet
         </h2>
-        <h3>_TRADE/{shipInfo.type}</h3>
+        <h3>_TRADE_{shipInfo.type}</h3>
         <ShipList>
-          <ShipListContainer>
+          <ShipListContainer2>
             <ul>
               <li>
                 <ImportantSpan>Current Cargo</ImportantSpan> (
@@ -128,7 +128,7 @@ export default function MarketplaceDetail() {
                 </li>
               ))}
             </ul>
-          </ShipListContainer>
+          </ShipListContainer2>
         </ShipList>
         {marketplaceDetail.map(
           ({
@@ -230,17 +230,13 @@ const InnerNavigationButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
   text-decoration: none;
   text-align: center;
   background-color: transparent;
-  color: #eee;
+  color: #fff;
 `
 
 const ImportantSpan = styled.span`
-  font-weight: 500;
   color: rgba(255, 170, 0, 1);
 `
 
@@ -255,6 +251,11 @@ const ShipList = styled.div`
 const ShipListContainer = styled.div`
   padding: 20px 20px 0 20px;
   border: 0;
+`
+const ShipListContainer2 = styled.div`
+  padding: 20px 20px 0 20px;
+  border: 0;
+  height: 140px;
 `
 
 const SubSection = styled.ul`
@@ -277,11 +278,8 @@ const BuySellContainer = styled.div`
 const BuySellButton = styled.button`
   border: none;
   padding: 10px 20px;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 500;
   background: transparent;
-  color: #eee;
+  color: #fff;
 `
 
 const BlinkingSpan = styled.span`

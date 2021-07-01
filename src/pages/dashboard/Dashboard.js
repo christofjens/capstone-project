@@ -75,13 +75,10 @@ const LogOutButton = styled.button`
   padding: 10px 20px;
   width: 100%;
   font-family: 'Titillium Web', monospace;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #eee;
+  color: #fff;
   background: transparent;
 `
 const Highlight = styled.span`
-  font-weight: 400;
   color: rgba(255, 170, 0, 1);
 `
 

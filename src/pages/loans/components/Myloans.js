@@ -136,14 +136,10 @@ const RepayLoanButton = styled.button`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background-color: transparent;
-  color: #eee;
+  color: #fff;
 `
 
 const ImportantSpan = styled.span`
-  font-weight: 600;
   color: rgba(255, 170, 0, 1);
 `

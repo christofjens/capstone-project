@@ -72,7 +72,6 @@ export default function MarketplaceDetail() {
 }
 
 const ImportantSpan = styled.span`
-  font-weight: 500;
   color: rgba(255, 170, 0, 1);
 `
 

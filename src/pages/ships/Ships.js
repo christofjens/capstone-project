@@ -15,7 +15,7 @@ export default function Ships() {
       </InnerMain>
       <InnerNavigation>
         <InnerNavigationButton exact to="/ships">
-          YOUR FLEET
+          YOUR SHIPS
         </InnerNavigationButton>
         {'/'}
         <InnerNavigationButton exact to="/ships/buy">
@@ -61,7 +61,7 @@ const InnerNavigationButton = styled(NavLink)`
   font-family: 'Titillium Web', monospace;
   font-weight: 500;
   background-color: transparent;
-  color: #eee;
+  color: #fff;
 
   &.active {
     color: rgba(255, 170, 0, 1);

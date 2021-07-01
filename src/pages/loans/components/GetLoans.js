@@ -14,6 +14,7 @@ GetLoans.propTypes = {
 
 export default function GetLoans() {
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [availableLoans, setAvailableLoans] = useState([])
   const { token } = loadFromLocal('token')
 
@@ -42,6 +43,7 @@ export default function GetLoans() {
         },
         data: { type: `${type}` },
       })
+      setSuccess(`1 ${type} loan taken!`)
     } catch (error) {
       setError(error.message)
     }
@@ -72,6 +74,7 @@ export default function GetLoans() {
                 TAKE THE {type} LOAN
               </TakeOutLoanButton>
             </TakeOutLoanButtonContainer>
+            {success && <SuccessMessage>{success}</SuccessMessage>}
             {error && <ErrorMessage>{error}</ErrorMessage>}
           </LoanListContainer>
         )
@@ -82,8 +85,12 @@ export default function GetLoans() {
 
 const ErrorMessage = styled.div`
   color: crimson;
-  font-weight: bold;
-  margin-top: 15px;
+  padding: 20px;
+`
+
+const SuccessMessage = styled.div`
+  color: rgba(0, 250, 0, 1);
+  padding: 20px;
 `
 
 const LoanList = styled.div`
@@ -113,14 +120,10 @@ const TakeOutLoanButton = styled.button`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background-color: transparent;
   color: #eee;
 `
 
 const ImportantSpan = styled.span`
-  font-weight: 600;
   color: rgba(255, 170, 0, 1);
 `

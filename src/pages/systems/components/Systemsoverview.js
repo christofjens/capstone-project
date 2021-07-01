@@ -102,15 +102,11 @@ const LocationDetailButton = styled(NavLink)`
   border: none;
   padding: 10px 20px;
   width: 100%;
-  font-size: 1rem;
-  font-family: 'Titillium Web', monospace;
-  font-weight: 400;
   background-color: transparent;
-  color: #eee;
+  color: #fff;
   text-decoration: none;
   text-align: center;
 `
 const ImportantSpan = styled.span`
-  font-weight: 400;
   color: rgba(255, 170, 0, 1);
 `
