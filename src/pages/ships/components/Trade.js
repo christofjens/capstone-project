@@ -20,7 +20,7 @@ export default function MarketplaceDetail() {
   const [shipCargo, setShipCargo] = useState([])
   // const [success, setSuccess] = useState('')
   const { token } = loadFromLocal('token')
-  const shipId = 'ckqjv7i0484984415s60mnvggqg'
+  const shipId = 'ckqlbnkdh111595415s6ydwfu6t2'
 
   // get Marketplace and Goods
   useEffect(() => {
