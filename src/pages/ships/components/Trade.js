@@ -3,7 +3,7 @@ import { loadFromLocal } from '../../../utils/localStorage'
 import styled from 'styled-components'
 import axios from 'axios'
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 MarketplaceDetail.propTypes = {
   pricePerUnit: PropTypes.number,
@@ -12,22 +12,29 @@ MarketplaceDetail.propTypes = {
   sellPricePerUnit: PropTypes.number,
   symbol: PropTypes.string,
   volumePerUnit: PropTypes.number,
+  shipId: PropTypes.string,
 }
 
 export default function MarketplaceDetail() {
   const [marketplaceDetail, setMarketplaceDetail] = useState([])
   const [shipInfo, setShipInfo] = useState([])
   const [shipCargo, setShipCargo] = useState([])
-  // const [success, setSuccess] = useState('')
+  const [success, setSuccess] = useState([])
+  const [error, setError] = useState([])
   const { token } = loadFromLocal('token')
-  const shipId = 'ckqlbnkdh111595415s6ydwfu6t2'
+  const location = useLocation()
+  const shipId = location.state?.shipId
+  const shipLocation = location.state?.location
 
   // get Marketplace and Goods
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/locations/OE-PM-TR/marketplace',
+        url:
+          'https://api.spacetraders.io/locations/' +
+          shipLocation.location +
+          '/marketplace',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -35,14 +42,14 @@ export default function MarketplaceDetail() {
       })
       setMarketplaceDetail(result.data.marketplace)
     })()
-  }, [])
+  }, [shipLocation.location, token])
 
   // get Info on Ship
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/my/ships/' + shipId,
+        url: 'https://api.spacetraders.io/my/ships/' + shipId.id,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -50,14 +57,14 @@ export default function MarketplaceDetail() {
       })
       setShipInfo(result.data.ship)
     })()
-  }, [])
+  }, [shipId, token])
 
   // get Info on Ship's cargo
   useEffect(() => {
     ;(async () => {
       const result = await axios({
         method: 'get',
-        url: 'https://api.spacetraders.io/my/ships/' + shipId,
+        url: 'https://api.spacetraders.io/my/ships/' + shipId.id,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -65,7 +72,7 @@ export default function MarketplaceDetail() {
       })
       setShipCargo(result.data.ship.cargo)
     })()
-  }, [])
+  }, [shipId, token])
 
   // BUY Goods
   function handleBuyGoods(shipId, quantity, symbol) {
@@ -77,14 +84,14 @@ export default function MarketplaceDetail() {
           Authorization: `Bearer ${token}`,
         },
         data: {
-          shipId: `${shipId}`,
+          shipId: shipId.id,
           quantity: `${quantity}`,
           good: `${symbol}`,
         },
       })
-      // setSuccess(`${quantity} ${symbol} added to your cargo!`)
+      setSuccess(`${quantity} ${symbol} added to your cargo!`)
     } catch (error) {
-      // setError(error.message)
+      setError(error.message)
     }
   }
 
@@ -98,16 +105,17 @@ export default function MarketplaceDetail() {
           Authorization: `Bearer ${token}`,
         },
         data: {
-          shipId: `${shipId}`,
+          shipId: shipId.id,
           quantity: `${quantity}`,
           good: `${symbol}`,
         },
       })
-      // setSuccess(`${quantity} ${good} ship added/removed from your cargo!`)
+      setSuccess(`${quantity} ${symbol} removed from your cargo!`)
     } catch (error) {
-      // setError(error.message)
+      setError(error.message)
     }
   }
+
   return (
     <Main>
       <InnerMain>
@@ -115,6 +123,10 @@ export default function MarketplaceDetail() {
           <BlinkingSpan>_</BlinkingSpan>Fleet
         </h2>
         <h3>_TRADE_{shipInfo.type}</h3>
+        <Messages>
+          {success && <SuccessMessage>{success}</SuccessMessage>}
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+        </Messages>
         <ShipList>
           <ShipListContainer2>
             <ul>
@@ -139,7 +151,7 @@ export default function MarketplaceDetail() {
             symbol,
             volumePerUnit,
           }) => (
-            <ShipList>
+            <ShipList key={shipId}>
               <ShipListContainer>
                 <SubSection>
                   <ul>
@@ -280,6 +292,19 @@ const BuySellButton = styled.button`
   padding: 10px 20px;
   background: transparent;
   color: #fff;
+`
+
+const ErrorMessage = styled.div`
+  color: crimson;
+  font-weight: bold;
+`
+const SuccessMessage = styled.div`
+  color: rgba(0, 250, 0, 1);
+`
+const Messages = styled.div`
+  height: 20px;
+  text-align: right;
+  line-height: 20px;
 `
 
 const BlinkingSpan = styled.span`

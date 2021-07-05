@@ -39,7 +39,7 @@ export default function BuyShips() {
       })
       setBuyShips(result.data.shipListings)
     })()
-  }, [])
+  }, [token])
 
   function handleBuyShip(type, location) {
     try {
