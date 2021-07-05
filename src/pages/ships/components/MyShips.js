@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom'
 MyShips.propTypes = {
   cargo: PropTypes.array,
   flightPlanId: PropTypes.string,
-  id: PropTypes.string,
   location: PropTypes.string,
   manufacturer: PropTypes.string,
   maxCargo: PropTypes.number,
@@ -20,6 +19,9 @@ MyShips.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   setMyShips: PropTypes.func,
+  shipId: PropTypes.shape({
+    shipId: PropTypes.string,
+  }),
 }
 
 export default function MyShips() {
@@ -38,7 +40,7 @@ export default function MyShips() {
       })
       setMyShips(result.data.ships)
     })()
-  }, [])
+  }, [token])
 
   if (!myShips.length) {
     return (
@@ -80,7 +82,7 @@ export default function MyShips() {
           x,
           y,
         }) => (
-          <div>
+          <div key={id}>
             <MyShipsList>
               <MyShipsListContainer>
                 <ul>
@@ -95,7 +97,7 @@ export default function MyShips() {
                   <li>
                     Speed: {speed} / Plating: {plating} / Weapons: {weapons}
                   </li>
-                  <li>Location: {location}</li>
+                  <li>Location: {!location ? 'in transit' : location}</li>
                 </ul>
               </MyShipsListContainer>
               <Image>
@@ -105,11 +107,21 @@ export default function MyShips() {
                 />
               </Image>
               <ShipNavigation>
-                <ShipNavigationButton to="/ships/travel">
+                <ShipNavigationButton
+                  to={{
+                    pathname: '/ships/travel',
+                    state: { shipId: { id }, shipType: { type } },
+                  }}
+                >
                   TRAVEL
                 </ShipNavigationButton>
                 {'/'}
-                <ShipNavigationButton to="/ships/trade">
+                <ShipNavigationButton
+                  to={{
+                    pathname: '/ships/trade',
+                    state: { shipId: { id }, location: { location } },
+                  }}
+                >
                   TRADE
                 </ShipNavigationButton>
               </ShipNavigation>
