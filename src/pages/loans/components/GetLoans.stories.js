@@ -1,12 +1,12 @@
-import Showloans from './Showloans'
+import GetLoans from './GetLoans'
 import React from 'react'
 
 export default {
-  title: 'Showloans',
-  component: Showloans,
+  title: 'GetLoans',
+  component: GetLoans,
 }
 
-const Template = args => <Showloans {...args} />
+const Template = args => <GetLoans {...args} />
 
 export const WithCollateral = Template.bind({})
 WithCollateral.args = {

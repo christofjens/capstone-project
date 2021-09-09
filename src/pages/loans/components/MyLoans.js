@@ -27,7 +27,7 @@ export default function Showloans() {
       })
       setTakenLoans(result.data.loans)
     })()
-  }, [])
+  }, [token])
 
   function handleRepayLoan(type) {
     try {

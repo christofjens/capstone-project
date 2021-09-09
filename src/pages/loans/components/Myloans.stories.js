@@ -1,12 +1,10 @@
-
-import Myloans from './Myloans'
+import MyLoans from './MyLoans'
 export default {
-    title: 'Myloans',
-    component: Myloans
+  title: 'MyLoans',
+  component: MyLoans,
 }
-      
-const Template = args => <Myloans {...args} />
-      
+
+const Template = args => <MyLoans {...args} />
+
 export const Default = Template.bind({})
 Default.args = {}
-    

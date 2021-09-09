@@ -32,7 +32,7 @@ export default function SystemsOverview() {
       })
       setSystemsOverview(result.data.locations)
     })()
-  }, [])
+  }, [token])
 
   return (
     <>

@@ -16,7 +16,7 @@ export default function Dashboard() {
       })
       setUserData(result.data.user)
     })()
-  }, [])
+  }, [token])
 
   return (
     <>
